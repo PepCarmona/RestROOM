@@ -2,7 +2,7 @@
  *  Este código tiene como única finalidad el uso educativo, dentro del marco 
  *  de las entregas realizadas a LINKIAFP y sus profesores a través de su plataforma digital.
  */
-package com.project.restroom.data;
+package restroom.data.myapp;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -41,8 +41,7 @@ public class Restaurant implements Serializable {
     }
 
     /* constructor without 'description' field */
-    public Restaurant(int restaurant_ID, String name, String address, String city, String country, String zip_code, String username, String password) {
-        this.restaurant_ID = restaurant_ID;
+    public Restaurant(String name, String address, String city, String country, String zip_code, String username, String password) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -53,8 +52,7 @@ public class Restaurant implements Serializable {
     }
 
     /* complete constructor */
-    public Restaurant(int restaurant_ID, String name, String description, String address, String city, String country, String zip_code, String username, String password) {
-        this.restaurant_ID = restaurant_ID;
+    public Restaurant(String name, String description, String address, String city, String country, String zip_code, String username, String password) {
         this.name = name;
         this.description = description;
         this.address = address;
