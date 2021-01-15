@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Restaurant - Make your own order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../external/owl.carousel.min.css">
+    <link rel="stylesheet" href="../external/owl.theme.default.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+    <section class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="menu-trigger col">
+                    <a href=""><i class="fas fa-bars"></i></a>
+                </div>
+                <div class="logo-wrapper col">
+                    <img src="../img/logo_transparent.png" alt="Restaurant Logo">
+                </div>
+                <div class="cart-trigger col">
+                    <a href=""><i class="fas fa-shopping-cart fa-flip-horizontal"></i></a>
+                    <i class="fas fa-circle"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu">
+        <div class="menu-header owl-carousel">
+            <div>Bebidas</div>
+            <div>Entrantes</div>
+            <div>Principales</div>
+            <div>Postres</div>
+        </div>
+        <div class="menu-body owl-carousel">
+            <div id="drinks" class="container">
+                <div class="food-item row align-items-center">
+                    <div class="col-4">
+                        <div class="food-foto">
+                            <img src="../img/burger1.jpg" alt="Hamburguesa">
+                        </div>
+                    </div>
+                    <div class="col-8 container">
+                        <div class="row">
+                            <div id="food-name" class="col">
+                                <h2 class="display-6">Hamburguesa clásica americana</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item-dropdown row justify-content-center">
+                    <div class="food-description col-12">Esta hamburguesa está formada por carne 100% de vacuno alimentado con grano local y siguiendo la metodología Eco y Bio. Viene acompañada de queso autóctono y hortalizas de KM. 0
+                    </div>
+                    <div class="food-allergens col-12">
+                        <div class="img-wrapper">
+                            <img src="../img/IconoAlergenoGluten-Gluten_icon-icons.com_67600.png" alt="Gluten>">
+                        </div>
+                        <div class="img-wrapper">
+                            <img src="../img/IconoAlergenoHuevo-Egg_icon-icons.com_67598.png" alt="Huevos">
+                        </div>
+                        <div class="img-wrapper">
+                            <img src="../img/IconoAlergenoLacteos-DairyProducts_icon-icons.com_67597.png" alt="Lácteos">
+                        </div>
+                        <div class="img-wrapper">
+                            <img src="../img/IconoAlergenoMostaza-Mustard_icon-icons.com_67595.png" alt="Mostaza">
+                        </div>
+                    </div>
+                    <div class="food-buy row align-items-center">
+                        <div class="food-price col-4">
+                            12€
+                        </div>
+                        <div class="add-to-cart col-8">
+                            Add to cart
+                        </div>
+                    </div>
+                </div>
+                <div class="separator row justify-content-center">
+                    <div class="col-5"></div>
+                </div>
+
+                <div class="food-item row">
+                    <div class="col-4 align-self-center">
+                        <div class="food-foto">
+                            <img src="../img/burger1.jpg" alt="Hamburguesa">
+                        </div>
+                    </div>
+                    <div class="col-8 container">
+                        <div class="row">
+                            <div id="food-name" class="col">
+                                <h2 class="display-6">Hamburguesa alemana de Baviera</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sides" class="container">
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main" class="container">
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="desserts" class="container">
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-item row">
+                    <div class="col-3">
+                        <div id="food-foto">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col-6 container">
+                        <div class="row">
+                            <div id="food-name" class="col-8">Hamburguesa</div>
+                            <div id="food-allergens" class="col-4">1 3 5</div>
+                        </div>
+                        <div class="row">
+                            <div id="food-description" class="col">Esto es una ahmburguesa de carne con pan y patats. Esta buena.</div>
+                        </div>
+                    </div>
+                    <div class="col-3 container">
+                        <div class="row justify-content-center align-items-center">
+                            <div id="food-quantity" class="col-10">
+                                <input type="text">
+                            </div>
+                            <div class="col-10">
+                                <button id="add-to-cart" class="btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="../external/owl.carousel.min.js"></script>
+        <script src="../js/main.js"></script>
+    </section>
+
+</body>
+
+</html>

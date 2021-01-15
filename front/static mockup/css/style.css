@@ -1,0 +1,408 @@
+html, body {
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow-x: hidden;
+    background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("/public/img/pattern5.png");
+    background-repeat: repeat; 
+}
+
+.header {
+    position: absolute;
+    width: 100vw;
+    background-color: #ffa600;
+    padding: 10px 100px 10px 150px;
+    z-index: 10;
+}
+.public-logo img {
+    max-width: 100%;
+}
+.desktop-menu a {
+    color: black;
+    border-radius: 50px;
+}
+.desktop-menu a:hover {
+    background-color: rgb(255, 185, 55);
+}
+.desktop-menu a:nth-last-child(1) {
+    background-color: rgb(255, 211, 130);
+    margin-left: 10px;
+}
+.desktop-menu a:nth-last-child(1):hover {
+    background-color: rgb(255, 223, 163);
+}
+
+.home {
+    background-image: url("/public/img/home-background.jpeg");
+    background-size: cover;
+    width: 100vw;
+}
+.home .container {
+    height: 100vh;
+}
+.home .container .row {
+    height: 100%;
+}
+.search {
+    background-color: orange;
+    border: 1px solid rgb(112, 112, 112) !important;
+    height: 58px;
+    width: 55px;
+    font-size: 25px;
+    color: rgb(80, 80, 80);
+    border: 1px solid rgb(112, 112, 112);
+}
+.search:hover {
+    background-color: rgb(223, 145, 0);
+}
+
+.explore {
+    margin-top: 100px;
+    background-image: url("/public/img/explore-background.jpg");
+    background-size: cover;
+}
+.explore .container {
+    height: 100vh;
+}
+.home-explore {
+    width: 460px !important;
+    margin-top: 10vh;
+    color: orange;
+    background-color: rgba(0, 0, 0, 0.075);
+    padding: 20px;
+    border-radius: 15px;
+}
+.home-explore h1 {
+    font-size: 100px;
+    line-height: 0.8;
+}
+.home-explore h1 small {
+    font-size: 50px;
+}
+.home-explore .more {
+    float: right;
+}
+
+.help {
+    margin-top: 100px;
+    background-image: url("/public/img/help-background.jpg");
+    background-size: cover;
+}
+.help .container {
+    height: 100vh;
+}
+.home-help {
+    margin-top: 10vh;
+    margin-left: 5vw;
+    color: orange;
+    background-color: rgba(255, 255, 255, 0.322);
+    padding: 20px;
+    border-radius: 15px;
+}
+.home-help h1 {
+    font-size: 100px;
+    line-height: 0.8;
+}
+.home-help h1 small {
+    font-size: 50px;
+}
+.home-help .more {
+    float: left;
+}
+
+.more {
+    font-size: 25px;
+    background-color: orange;
+    border-radius: 50px;
+    color: white;
+    margin-top: 40px;
+    padding: 5px 15px 8px 15px;
+}
+.more i {
+    font-size: 25px;
+}
+
+
+/* -- LIST.HTML --*/
+
+    /* -- Zip modifier -- */
+.zip-and-food {
+    margin-top: 20vh;
+}
+.zip-code-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.322);
+}
+.list-form {
+    width: 9vw;
+    float: left;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: gray;
+}
+.list-search {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-color: gray;
+    border-left-color: transparent !important;
+}
+
+    /* -- Food Type Carousel Selector --*/
+.food-type-area {
+    background-color: rgba(255,255,255,0.322);
+    border-radius: 10px;
+}
+.food-type-list {
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+.owl-carousel {
+    text-align: center;
+    height: 150px;
+}
+.owl-item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100px;
+    margin-top: 25px;
+    background-color: paleturquoise;
+    cursor: pointer;
+}
+.owl-item i {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.owl-item:hover .unchecked {
+    color: rgba(0, 0, 0, 0.25);
+}
+.owl-item:hover .checked {
+    color: rgb(113, 179, 15)}
+.owl-nav {
+    font-size: 50px;
+    margin-top: -90px;
+}
+.owl-prev {
+    float: left;
+    margin-left: -15px;
+    outline: none !important;
+}
+.owl-next {
+    float: right;
+    margin-right: -15px;
+    outline: none !important;
+}
+
+    /* -- Services checks -- */
+.services-and-restaurant {
+    margin-top: 5vh;
+}
+.list-services-area {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.322);
+    border-radius: 10px;
+    height: fit-content;
+}
+.list-services-area h5 {
+    padding-top: 1vh;
+    margin-bottom: 2vh;
+    text-align: center;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid black;
+}
+.check-services-2 div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.322);
+    padding: 0px 10px 0px 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(112, 112, 112);
+    margin-bottom: 8px;
+}
+.check-services-2 div p {
+    margin-top: 4%;
+}
+
+    /* -- Restaurant Search Result List -- */
+.list-restaurant {
+    background-color: rgba(255,255,255,0.322);
+    margin-left: -1vw;
+    margin-right: -1vw;
+    border-radius: 10px;
+    padding: 10px;
+    height: fit-content;
+}
+.restaurant-wrapper {
+    background-color: rgba(255,255,255,0.322);
+    padding: 10px 0px 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.restaurant-thumbnail {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    background-color: paleturquoise;
+}
+.restaurant-thumbnail p {
+    width: fit-content;
+    padding: 0px 8px 3px 8px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+.restaurant-info p:nth-child(3) {
+    margin-top: 8%;
+    margin-left: 100%;
+    width: max-content;
+    padding: 0px 5px 0px 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+
+/* RESTAURANT.HTML */
+
+    /* -- Banner -- */
+.header-foto {
+    height: 40vh;
+    width: 100vw;
+    background-image: url("/public/img/restaurant-header-1.jpg");
+    background-size: cover;
+    background-position: 0% 40%;
+    z-index: -1;
+}
+
+    /* -- Restaurant Header -- */
+.restaurant-header {
+    background-color: orange;
+}
+.restaurant-header > .container > .row {
+    padding: 10px;
+}
+.header-basic {
+    padding: 10px;
+}
+.header-basic .row:nth-child(1) {
+    margin-bottom: 5px;
+}
+.header-logo {
+    height: 80px;
+    width: 80px;
+    margin-left: 1vw;
+    background-color: paleturquoise;
+    /*--*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-food-type {
+    text-align: end;
+}
+.header-info {
+    border-left: 1px solid black;
+}
+.header-info .row div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.header-info p {
+    float: left;
+    margin-right: 30px;
+}
+.header-info a {
+    color: black;
+    text-decoration: none;
+}
+.header-info a:hover {
+    color: rgb(80, 80, 80);
+}
+.header-contact {
+    margin-bottom: 10px;
+}
+
+    /* -- Tab Menu -- */
+.tab-menu {
+    margin-top: 10px;
+}
+.nav-tab {
+    margin-top: 4vh;
+    height: 5vh;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+.tab-menu-item {
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    text-align: center;
+    height: 4vh;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+.tab-menu-item.active {
+    background-color: rgba(255, 166, 0, 0.65);
+}
+
+
+/* -- COMMON -- */
+
+    /* -- hidden checkbox -- */
+.hidden-checkbox div {
+    color: rgb(80, 80, 80);
+    cursor: pointer;
+}
+.hidden-checkbox div * {
+    cursor: pointer;
+}
+.hidden-checkbox div:hover {
+    color: black;
+}
+.hidden-checkbox div i.unchecked {
+    color: rgba(0, 0, 0, 0.125);
+}
+.hidden-checkbox div:hover i.unchecked {
+    color: rgba(0, 0, 0, 0.25);
+}
+.hidden-checkbox div i.checked {
+    color: rgb(100, 160, 11)
+}
+.hidden-checkbox div:hover i.checked {
+    color: rgb(113, 179, 15)
+}
+.hidden-checkbox div input[type="checkbox"] {
+    display: none;
+}
+
+    /* -- Back To Top Arrow -- */
+.top-arrow {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 99;
+}
+.top-arrow a i {
+    height: 55px;
+    width: 55px;
+    background-color: rgba(255, 166, 0, 0.637);
+    font-size: 25px;
+    color: rgb(80, 80, 80);
+    border: 1px solid rgb(112, 112, 112);
+}
+.show {
+    display: block;
+}

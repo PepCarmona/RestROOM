@@ -1,0 +1,114 @@
+@media only screen and (max-width: 767px) {
+    /* -- Header -- */
+    .header {
+        padding: 15px 10px 10px 10px;
+        background-color: orange;
+    }
+    .logo-wrapper {
+        text-align: center;
+    }
+    .logo-wrapper img {
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: -5px;
+    }
+    .menu-trigger {
+        font-size: 25px;
+    }
+    .cart-trigger {
+        position: relative;
+        font-size: 25px;
+        text-align: end;
+    }
+    .cart-trigger>i {
+        position: absolute;
+        font-size: 10px;
+        color: white;
+        top: -6px;
+        display: none;
+    }
+    a {
+        color: #5C3250;
+        text-decoration: none;
+    }
+    /* -- Menu Header -- */
+    .menu-header {
+        height: 60px;
+    }
+    .menu-header .owl-stage-outer,
+    .menu-header .owl-stage,
+    .menu-header .owl-item {
+        height: 100%;
+    }
+    .menu-header .owl-item {
+        padding: 20px 5px 15px 5px;
+        text-align: center;
+        background-color: rgba(201, 131, 0, 0.4);
+    }
+    /* -- Menu Body -- */
+    .menu-body {
+        background-color: rgba(201, 131, 0, 0.25);
+    }
+    .menu-body .owl-item {
+        margin-top: 25px;
+    }
+    .menu-body .food-item {
+        margin-bottom: 25px;
+        padding: 10px 0px 10px 0px;
+    }
+    .food-item h2 {
+        font-size: 25px;
+    }
+    .food-foto {
+        display: flex;
+        align-self: center;
+    }
+    .food-item-dropdown {
+        background-color: rgb(250, 246, 237);
+        padding: 10px;
+        margin-bottom: 5px;
+        display: none;
+    }
+    .food-item-dropdown div {
+        margin-bottom: 5px;
+    }
+    .food-allergens .img-wrapper {
+        height: 25px;
+        width: 20px;
+        float: right;
+    }
+    .food-allergens img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    .food-buy {
+        margin-top: 10px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .food-price {
+        font-size: 25px;
+        border: 2px solid orange;
+        border-right: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        height: 45px;
+    }
+    .add-to-cart {
+        background-color: rgba(255, 166, 0, 0.61);
+        border: 2px solid orange;
+        border-left: none;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        height: 45px;
+        outline: none;
+    }
+    .separator div {
+        border-bottom: 1px solid black;
+        margin-bottom: 20px;
+        /* menos last child */
+    }
+    .show {
+        display: block;
+    }
+}

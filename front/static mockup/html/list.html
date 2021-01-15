@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyApp - List of Restaurants</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <section class="header" id="top">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="public-logo col-2">
+                    <a href="../html/index.html"><img src="../img/logo-transparent.png" alt="MyApp Logo"></a>
+                </div>
+                <div class="col-auto">
+                    <ul class="desktop-menu nav">
+                        <!--check links -->
+                        <a class="nav-link" href="#explore">Explora</a>
+                        <a class="nav-link" href="#help">Ayuda</a>
+                        <a class="nav-link" href="login.html">Login/Register</a>
+                    </ul>  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="zip-and-food">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="zip-code-area col-3">
+                    <div class="form-floating">
+                        <input class="list-form form-control" type="text" id="zip-code" name="zip-code" 
+                               placeholder="Zip Code" pattern="^([1-9]{2}|[0-9][1-9]|[1-9][0-9])[0-9]{3}$">
+                        <label for="zip-code">Zip Code</label>
+                    </div>
+                    <div class="col-auto">
+                        <!-- check button link (pass zip code via php?)-->
+                        <a href="" class="btn search list-search" id="search"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="food-type-area col-8">
+                    <section class="food-type-list">
+                        <div class="food-type-carousel owl-carousel hidden-checkbox">
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="food-" class="hidden">
+                                <i class="fa fa-check unchecked"></i>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-and-restaurant">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="list-services-area col-3">
+                    <h5>SERVICIOS</h5>
+                <!--
+                    <ul class="check-services">
+                        <li id="service-1">Terraza</li>
+                        <li id="service-2">Calefacción</li>
+                        <li id="service-3">Perros permitidos</li>
+                        <li id="service-4">Mascotas permitidas</li>
+                        <li id="service-5">WiFi</li>
+                        <li id="service-6">Aparcamiento</li>
+                        <li id="service-7">A domicilio</li>
+                        <li id="service-8">Take away</li>
+                        <li id="service-9">Reserva online</li>
+                        <li id="service-10">Acceso para discapacitados</li>
+                        <li id="service-11">Pago con tarjeta de crédito</li>
+                        <li id="service-12">Pago con PayPal</li>
+                        <li id="service-13">Pago con Bizum</li>
+                        <li id="service-14">Buffet</li>
+                        <li id="service-15">TV</li>
+                        <li id="service-16">Música</li>
+                    </ul>
+                -->
+                    <form class="check-services-2 hidden-checkbox">
+                        <div>
+                            <p>Terraza</p>
+                            <input type="checkbox" id="service-1" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Calefacción</p>
+                            <input type="checkbox" id="service-2" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Perros permitidos</p>
+                            <input type="checkbox" id="service-3" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Mascotas permitidas</p>
+                            <input type="checkbox" id="service-4" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>WiFi</p>
+                            <input type="checkbox" id="service-5" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Aparcamiento</p>
+                            <input type="checkbox" id="service-6" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>A domicilio</p>
+                            <input type="checkbox" id="service-7" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Take away</p>
+                            <input type="checkbox" id="service-8" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Reserva online</p>
+                            <input type="checkbox" id="service-9" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Acceso para discapacitados</p>
+                            <input type="checkbox" id="service-10" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Pago con tarjeta de crédito</p>
+                            <input type="checkbox" id="service-11" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Pago con PayPal</p>
+                            <input type="checkbox" id="service-12" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Pago con Bizum</p>
+                            <input type="checkbox" id="service-13" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Buffet</p>
+                            <input type="checkbox" id="service-14" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>TV</p>
+                            <input type="checkbox" id="service-15" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                        <div>
+                            <p>Música</p>
+                            <input type="checkbox" id="service-16" class="hidden">
+                            <i class="fa fa-check unchecked"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-8">
+                    <section class="list-restaurant">
+                        <div class="restaurant-wrapper container" id="restaurant-1">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p></div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-2">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-3">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-4">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-5">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-6">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-7">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-8">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-9">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-10">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-11">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-12">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-13">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-14">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-wrapper container" id="restaurant-15">
+                            <div class="row">
+                                <div class="restaurant-thumbnail col-3">
+                                    <p>opened</p>
+                                </div>
+                                <div class="restaurant-info col-8">
+                                    <h3>RestName</h3>
+                                    <p>Description</p>
+                                    <p>business hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BACK TO TOP ARROW-->
+    <div class="btn top-arrow">
+        <a href="#top"><i class="btn fa fa-arrow-up"></i></a>
+    </div>
+
+    <section class="footer">
+        <!-- JS -->
+        <script src="../js/bootstrap.bundle.js"></script>
+        <script src="../js/jquery-3.5.1.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/main.js"></script>
+    </section>
+</body>
+</html>
