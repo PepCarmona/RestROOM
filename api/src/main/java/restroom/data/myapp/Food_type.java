@@ -22,7 +22,7 @@ public class Food_type implements Serializable {
     private int food_type_ID; 
     
     private String name;
-
+    
     public Food_type() {
     }
 

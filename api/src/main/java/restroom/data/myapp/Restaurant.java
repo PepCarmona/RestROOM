@@ -5,6 +5,7 @@
 package restroom.data.myapp;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Restaurant implements Serializable {
     
     private String name;
     
+    @Column(nullable = true)
     private String description;
     
     private String address;
@@ -40,18 +42,6 @@ public class Restaurant implements Serializable {
     public Restaurant() {
     }
 
-    /* constructor without 'description' field */
-    public Restaurant(String name, String address, String city, String country, String zip_code, String username, String password) {
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.country = country;
-        this.zip_code = zip_code;
-        this.username = username;
-        this.password = password;
-    }
-
-    /* complete constructor */
     public Restaurant(String name, String description, String address, String city, String country, String zip_code, String username, String password) {
         this.name = name;
         this.description = description;

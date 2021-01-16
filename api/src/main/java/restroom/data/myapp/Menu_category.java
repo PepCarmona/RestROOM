@@ -26,8 +26,7 @@ public class Menu_category implements Serializable {
     public Menu_category() {
     }
 
-    public Menu_category(int category_ID, String name) {
-        this.category_ID = category_ID;
+    public Menu_category(String name) {
         this.name = name;
     }
 
