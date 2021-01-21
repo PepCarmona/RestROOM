@@ -15,24 +15,23 @@ import javax.persistence.Id;
  * @author PepCarmona
  */
 @Entity
-public class Status implements Serializable {
+public class Myapp_Food_type implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int status_ID;
+    private int food_type_ID; 
     
     private String name;
-
-    public Status() {
+    
+    public Myapp_Food_type() {
     }
 
-    public Status(int status_ID, String name) {
-        this.status_ID = status_ID;
+    public Myapp_Food_type(String name) {
         this.name = name;
     }
 
-    public int getStatus_ID() {
-        return status_ID;
+    public int getFood_type_ID() {
+        return food_type_ID;
     }
 
     public String getName() {

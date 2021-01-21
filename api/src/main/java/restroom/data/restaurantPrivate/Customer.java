@@ -2,7 +2,7 @@
  *  Este código tiene como única finalidad el uso educativo, dentro del marco 
  *  de las entregas realizadas a LINKIAFP y sus profesores a través de su plataforma digital.
  */
-package restroom.data.myapp;
+package restroom.data.restaurantPrivate;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

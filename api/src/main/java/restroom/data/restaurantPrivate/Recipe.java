@@ -4,43 +4,46 @@
  */
 package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author PepCarmona
  */
 @Entity
+@JsonIgnoreProperties({"food"})
 public class Recipe implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int recipe_ID;
+    @Column(name = "recipe_ID")
+    private int id;
     
     @Column(nullable = true)
     private String instructions;
     
     private float result_quantity;
     
-    private int food;
+    @OneToOne(mappedBy = "recipe")
+    private Food food;
 
     public Recipe() {
     }
 
-    public Recipe(int recipe_ID, String instructions, float result_quantity, int food) {
-        this.recipe_ID = recipe_ID;
+    public Recipe(String instructions, float result_quantity) {
         this.instructions = instructions;
         this.result_quantity = result_quantity;
-        this.food = food;
     }
 
     public int getRecipe_ID() {
-        return recipe_ID;
+        return id;
     }
 
     public String getInstructions() {
@@ -51,7 +54,7 @@ public class Recipe implements Serializable {
         return result_quantity;
     }
 
-    public int getFood() {
+    public Food getFood() {
         return food;
     }
 }

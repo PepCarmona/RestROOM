@@ -2,7 +2,7 @@
  *  Este código tiene como única finalidad el uso educativo, dentro del marco 
  *  de las entregas realizadas a LINKIAFP y sus profesores a través de su plataforma digital.
  */
-package restroom.data.myapp;
+package restroom.data.restaurantPrivate;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -15,23 +15,24 @@ import javax.persistence.Id;
  * @author PepCarmona
  */
 @Entity
-public class Food_type implements Serializable {
+public class Service implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int food_type_ID; 
+    private int service_ID;
     
     private String name;
-    
-    public Food_type() {
+
+    public Service() {
     }
 
-    public Food_type(String name) {
+    public Service(int service_ID, String name) {
+        this.service_ID = service_ID;
         this.name = name;
     }
 
-    public int getFood_type_ID() {
-        return food_type_ID;
+    public int getService_ID() {
+        return service_ID;
     }
 
     public String getName() {

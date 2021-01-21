@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author PepCarmona
  */
 @Entity
-public class Restaurant implements Serializable {
+public class Myapp_Restaurant implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +39,10 @@ public class Restaurant implements Serializable {
     
     private String password;
 
-    public Restaurant() {
+    public Myapp_Restaurant() {
     }
 
-    public Restaurant(String name, String description, String address, String city, String country, String zip_code, String username, String password) {
+    public Myapp_Restaurant(String name, String description, String address, String city, String country, String zip_code, String username, String password) {
         this.name = name;
         this.description = description;
         this.address = address;

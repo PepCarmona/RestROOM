@@ -4,6 +4,7 @@
  */
 package restroom.repository.restaurantPrivate;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import restroom.data.restaurantPrivate.Menu;
 
@@ -12,4 +13,6 @@ import restroom.data.restaurantPrivate.Menu;
  * @author PepCarmona
  */
 public interface MenuRepository extends CrudRepository<Menu, Integer>{
+    
+    public List<Menu> findByAvailableIsTrue();
 }

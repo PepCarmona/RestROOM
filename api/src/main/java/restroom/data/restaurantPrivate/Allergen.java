@@ -2,13 +2,17 @@
  *  Este código tiene como única finalidad el uso educativo, dentro del marco 
  *  de las entregas realizadas a LINKIAFP y sus profesores a través de su plataforma digital.
  */
-package restroom.data.myapp;
+package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -16,15 +20,20 @@ import javax.persistence.Id;
  */
 
 @Entity
+@JsonIgnoreProperties({"foods"})
 public class Allergen implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int allergen_ID;
+    @Column(name = "allergen_ID")
+    private int id;
     
     private String name;
     
     private String icon_uri;
+    
+    @ManyToMany(mappedBy = "allergens")
+    private List<Food> foods;
 
     public Allergen() {
     }
@@ -35,7 +44,7 @@ public class Allergen implements Serializable {
     }
 
     public int getAllergen_ID() {
-        return allergen_ID;
+        return id;
     }
 
     public String getName() {
@@ -44,5 +53,9 @@ public class Allergen implements Serializable {
 
     public String getIcon_uri() {
         return icon_uri;
+    }
+
+    public List<Food> getFoods() {
+        return foods;
     }
 }

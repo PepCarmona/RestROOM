@@ -2,15 +2,15 @@
  *  Este código tiene como única finalidad el uso educativo, dentro del marco 
  *  de las entregas realizadas a LINKIAFP y sus profesores a través de su plataforma digital.
  */
-package restroom.repository.myapp;
+package restroom.repository.restaurantPrivate;
 
-import restroom.data.myapp.Menu_category;
 import org.springframework.data.repository.CrudRepository;
+import restroom.data.restaurantPrivate.MenuCategory;
 
 /**
  *
  * @author PepCarmona
  */
-public interface Menu_categoryRepository extends CrudRepository<Menu_category, Integer>{
+public interface MenuCategoryRepository extends CrudRepository<MenuCategory, Integer>{
     
 }

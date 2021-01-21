@@ -47,7 +47,7 @@ public class RestaurantPrivateDataSourceConfiguration {
             EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(restaurantPrivateDataSource())
-                .packages("restroom.data")
+                .packages("restroom.data.restaurantPrivate")
                 .build();
     }
     

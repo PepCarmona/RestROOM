@@ -4,23 +4,34 @@
  */
 package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import restroom.service.restaurantPrivate.MenuService;
 
 /**
  *
  * @author PepCarmona
  */
 @Entity
+@JsonIgnoreProperties({"menus", "allergens"})
 public class Food implements Serializable {
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int food_ID;
+    @Column(name = "food_ID")
+    private int id;
     
     private String name;
     
@@ -31,30 +42,48 @@ public class Food implements Serializable {
     
     private float price;
     
-    @Column(name = "category_ID")
-    private int category;
+    @JoinColumn(name = "category_ID")
+    @ManyToOne
+    private MenuCategory category;
     
-    @Column(name = "recipe_ID")
-    private int recipe;
+    @JoinColumn(name = "recipe_ID")
+    @OneToOne
+    private Recipe recipe;
     
-    @Column(name = "food_type_ID")
-    private int food_type;
+    @JoinColumn(name = "food_type_ID")
+    @ManyToOne
+    private FoodType foodType;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "menu_item",
+            joinColumns = {@JoinColumn(name = "food_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "menu_ID")})
+    private List<Menu> menus;
 
+    @ManyToMany
+    @JoinTable(
+            name = "food_allergen",
+            joinColumns = {@JoinColumn(name = "food_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "allergen_ID")})
+    private List<Allergen> allergens;
+    
     public Food() {
     }
 
-    public Food(String name, String description, Boolean available, float price, int category, int recipe, int food_type) {
+    public Food(String name, String description, Boolean available, float price, MenuCategory category, Recipe recipe, FoodType foodType, List<Integer> allergenIds) {
         this.name = name;
         this.description = description;
         this.available = available;
         this.price = price;
         this.category = category;
         this.recipe = recipe;
-        this.food_type = food_type;
+        this.foodType = foodType;
+        //allergenIds.forEach(allergenId -> this.allergens.add(MenuService.findAllergenById(allergenId)));
     }
 
     public int getFood_ID() {
-        return food_ID;
+        return id;
     }
 
     public String getName() {
@@ -73,15 +102,36 @@ public class Food implements Serializable {
         return price;
     }
 
-    public int getCategory() {
+    public MenuCategory getCategory() {
         return category;
     }
 
-    public int getRecipe() {
+    public Recipe getRecipe() {
         return recipe;
     }
+//    
+//    public String getMenus() {
+//        return menus;
+//    }
+//    
+//    public ArrayList<Integer> menusToArray() {
+//        ArrayList<Integer> menusId = new ArrayList<>();
+//        String[] splitted = menus.split(",");
+//        for (String split : splitted) {
+//            menusId.add(Integer.getInteger(split));
+//        }
+//        return menusId;
+//    }
 
-    public int getFood_type() {
-        return food_type;
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public List<Allergen> getAllergens() {
+        return allergens;
     }
 }
