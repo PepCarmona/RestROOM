@@ -1,0 +1,339 @@
+:root {
+    --lightest-orange: rgb(255, 233, 190);
+    --light-orange:  rgb(255, 211, 130);
+    --hard-orange: rgb(255, 182, 47);
+    --dark-orange: rgb(216, 140, 0);
+
+    --border-gray: rgb(112, 112, 112);
+    --letter-light-gray: rgb(80, 80, 80);
+    --letter-hard-gray: rgb(41, 41, 41);
+
+    --transparent-white: rgba(255, 255, 255, 0.322);
+    --transparent-black: rgba(0, 0, 0, 0.075);
+}
+body {
+    padding: 0;
+    overflow-x: hidden;
+    /*background: linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)), url("/img/pattern5.png");
+    background-repeat: repeat;*/
+    background-color: var(--lightest-orange);
+    color: var(--letter-hard-gray);
+}
+i {
+    color: black;
+}
+a {
+    color: var(--letter-gray);
+}
+
+.header {
+    position: absolute;
+    width: 100vw;
+    background-color: var(--hard-orange);
+    padding: 10px 10px 10px 15px;
+    z-index: 10;
+}
+.public-logo img {
+    max-width: 100%;
+}
+.desktop-menu a {
+    color: black;
+    border-radius: 50px;
+}
+.desktop-menu a:hover {
+    background-color: var(--light-orange);
+}
+.desktop-menu a:nth-last-child(1) {
+    background-color: var(--light-orange);
+    margin-left: 10px;
+}
+.desktop-menu a:nth-last-child(1):hover {
+    background-color: var(--lightest-orange);
+}
+
+.home {
+    background-image: url("/img/home-background.jpeg");
+    background-size: cover;
+    width: 100vw;
+}
+.home .container {
+    height: 100vh;
+}
+.home .container .row {
+    height: 100%;
+}
+.search {
+    background-color: var(--hard-orange);
+    border: 1px solid var(--border-gray) !important;
+    height: 58px;
+    width: 55px;
+    font-size: 25px;
+    color: var(--letter-gray);
+}
+.search:hover {
+    background-color: var(--dark-orange);
+}
+
+.explore {
+    margin-top: 100px;
+    background-image: url("/img/explore-background.jpg");
+    background-size: cover;
+}
+.explore .container {
+    height: 100vh;
+}
+.home-explore {
+    width: 460px !important;
+    margin-top: 10vh;
+    color: var(--hard-orange);
+    background-color: var(--transparent-black);
+    padding: 20px;
+    border-radius: 15px;
+}
+.home-explore h1 {
+    font-size: 100px;
+    line-height: 0.8;
+}
+.home-explore h1 small {
+    font-size: 50px;
+}
+.home-explore .more {
+    float: right;
+}
+
+.help {
+    margin-top: 100px;
+    background-image: url("/img/help-background.jpg");
+    background-size: cover;
+}
+.help .container {
+    height: 100vh;
+}
+.home-help {
+    margin-top: 10vh;
+    margin-left: 5vw;
+    color: var(--hard-orange);
+    background-color: var(--transparent-white);
+    padding: 20px;
+    border-radius: 15px;
+}
+.home-help h1 {
+    font-size: 100px;
+    line-height: 0.8;
+}
+.home-help h1 small {
+    font-size: 50px;
+}
+.home-help .more {
+    float: left;
+}
+
+.more {
+    font-size: 25px;
+    background-color: var(--hard-orange);
+    border-radius: 50px;
+    color: white;
+    margin-top: 40px;
+    padding: 5px 15px 8px 15px;
+}
+.more i {
+    font-size: 25px;
+}
+
+
+/* -- LIST.HTML --*/
+
+    /* -- Zip modifier -- */
+.zip-and-food {
+    margin-top: 20vh;
+}
+.zip-code-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border-radius: 10px;
+    background-color: var(--transparent-white);
+}
+.list-form {
+    width: 9vw;
+    float: left;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-color: var(--border-gray);
+}
+.list-search {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-color: var(--border-gray);
+    border-left-color: transparent !important;
+}
+
+    /* -- Food Type Carousel Selector --*/
+.food-type-area {
+    background-color: var(--transparent-white);
+    border-radius: 10px;
+}
+.food-type-list {
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+.owl-carousel {
+    text-align: center;
+    height: 150px;
+}
+.owl-item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100px;
+    margin-top: 25px;
+    background-color: paleturquoise;
+    cursor: pointer;
+}
+.owl-item i {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.owl-item:hover .unchecked {
+    color: var(--transparent-black);
+}
+.owl-item:hover .checked {
+    color: rgb(113, 179, 15)}
+.owl-nav {
+    font-size: 50px;
+    margin-top: -90px;
+}
+.owl-prev {
+    float: left;
+    margin-left: -15px;
+    outline: none !important;
+}
+.owl-next {
+    float: right;
+    margin-right: -15px;
+    outline: none !important;
+}
+
+    /* -- Services checks -- */
+.services-and-restaurant {
+    margin-top: 5vh;
+}
+.list-services-area {
+    padding: 10px;
+    background-color: var(--transparent-white);
+    border-radius: 10px;
+    height: fit-content;
+}
+.list-services-area h5 {
+    padding-top: 1vh;
+    margin-bottom: 2vh;
+    text-align: center;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid black;
+}
+.check-services-2 div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--transparent-white);
+    padding: 0px 10px 0px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-gray);
+    margin-bottom: 8px;
+}
+.check-services-2 div p {
+    margin-top: 4%;
+}
+
+    /* -- Restaurant Search Result List -- */
+.list-restaurant {
+    background-color: var(--transparent-white);
+    margin-left: -1vw;
+    margin-right: -1vw;
+    border-radius: 10px;
+    padding: 10px;
+    height: fit-content;
+}
+.restaurant-wrapper {
+    background-color: var(--transparent-white);
+    padding: 10px 0px 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.restaurant-thumbnail {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    background-color: paleturquoise;
+}
+.restaurant-thumbnail p {
+    width: fit-content;
+    padding: 0px 8px 3px 8px;
+    border-radius: 15px;
+    background-color: var(--transparent-white);
+}
+.restaurant-info p:nth-child(3) {
+    margin-top: 8%;
+    margin-left: 100%;
+    width: max-content;
+    padding: 0px 5px 0px 5px;
+    border-radius: 5px;
+    background-color: var(--transparent-white);
+}
+
+/* -- COMMON -- */
+
+    /* -- hidden checkbox -- */
+.hidden-checkbox div {
+    color: var(--letter-gray);
+    cursor: pointer;
+}
+.hidden-checkbox div * {
+    cursor: pointer;
+}
+.hidden-checkbox div:hover {
+    color: black;
+}
+.hidden-checkbox div i.unchecked {
+    color: rgba(0, 0, 0, 0.125);
+}
+.hidden-checkbox div:hover i.unchecked {
+    color: var(--transparent-black);
+}
+.hidden-checkbox div i.checked {
+    color: rgb(100, 160, 11)
+}
+.hidden-checkbox div:hover i.checked {
+    color: rgb(113, 179, 15)
+}
+.hidden-checkbox div input[type="checkbox"] {
+    display: none;
+}
+
+    /* -- Back To Top Arrow -- */
+.top-arrow {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 99;
+}
+.top-arrow button {
+    height: 55px;
+    width: 55px;
+    background-color: rgba(255, 166, 0, 0.637);
+    border: 1px solid var(--border-gray);
+    border-radius: 2px;
+}
+.top-arrow button i {
+    font-size: 25px;
+    color: var(--letter-gray);
+}
+.show {
+    display: block;
+}
