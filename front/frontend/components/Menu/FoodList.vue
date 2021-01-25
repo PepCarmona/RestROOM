@@ -1,8 +1,10 @@
 <template>
   <div class="row">
     <div class="food-list col-10 container">
-      <div class="separator-horizontal" />
-      <food-item v-for="food in foods" :key="food.id" :food="food" />
+      <div v-for="food in foods" :key="food.id" class="food-item-container">
+        <div class="separator-horizontal" />
+        <food-item :food="food" />
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +34,7 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.separator-horizontal:nth-child(1) {
+.food-item-container:nth-child(1) > .separator-horizontal {
     margin-top: 5px;
 }
 .food-list {

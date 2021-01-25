@@ -1,22 +1,34 @@
 <template>
   <div class="menu-selector col">
     <button class="food-menu dropdown btn">
-      Menu
+      {{ text }}
       <i class="fas fa-sort-down" />
     </button>
     <div class="food-menu dropdown">
-      <div data-id="1">
-        menu 1
-      </div>
-      <div data-id="2">
-        menu 2
-      </div>
-      <div data-id="3">
-        menu 3
+      <div v-for="item in content" :key="item.id">
+        {{ item.name }}
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    content: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    text: {
+      type: String,
+      default () {
+        return ''
+      }
+    }
+  }
+}
+</script>
 <style scoped>
 button.dropdown {
     background-color:  var(--light-orange);

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <restaurant-header />
+    <restaurant-header :restaurant="restaurant" />
     <restaurant-tab />
-    <restaurant-menu :foods="foods" />
+    <restaurant-menu :foods="foods" :menus="menus" :types="types" :allergens="allergens" :categories="categories" />
   </div>
 </template>
 
@@ -20,12 +20,32 @@ export default {
   },
   async asyncData (ctx) {
     return {
-      foods: await ctx.app.$services.food.findAll()
+      restaurant: await ctx.app.$services.public.findRestaurantById(3),
+      foods: await ctx.app.$services.food.findAll(),
+      menus: await ctx.app.$services.menu.findAllMenus(),
+      types: await ctx.app.$services.menu.findAllFoodTypes(),
+      allergens: await ctx.app.$services.menu.findAllAllergens(),
+      categories: await ctx.app.$services.menu.findAllCategories()
     }
   },
   data () {
     return {
+      restaurant: {
+        type: Object
+      },
       foods: {
+        type: Array
+      },
+      menus: {
+        type: Array
+      },
+      types: {
+        type: Array
+      },
+      allergens: {
+        type: Array
+      },
+      categories: {
         type: Array
       }
     }

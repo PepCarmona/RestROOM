@@ -4,11 +4,14 @@
  */
 package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +35,7 @@ public class Allergen implements Serializable {
     
     private String icon_uri;
     
-    @ManyToMany(mappedBy = "allergens")
+    @ManyToMany(mappedBy = "allergens", fetch = FetchType.EAGER)
     private List<Food> foods;
 
     public Allergen() {

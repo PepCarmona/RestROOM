@@ -14,7 +14,7 @@
             </div>
             <div class="header-name col-9">
               <h1 class="display-6">
-                Sa Fàbrica
+                {{ restaurant.name }}
               </h1>
             </div>
           </div>
@@ -36,15 +36,21 @@
             <div class="header-contact col-auto">
               <p>
                 <i class="fas fa-laptop" />
-                <a href="http://" target="_blank" rel="noopener noreferrer">www.example.com</a>
+                <a :href="restaurant.website" target="_blank" rel="noopener noreferrer">
+                  {{ formattedWeb }}
+                </a>
               </p>
               <p>
                 <i class="fas fa-phone-alt" />
-                <a href="tel:+">666-666-666</a>
+                <a :href="restaurant.phone">
+                  {{ restaurant.phone }}
+                </a>
               </p>
               <p>
                 <i class="far fa-envelope" />
-                <a href="mailto:">example@example.com</a>
+                <a href="mailto:">
+                  {{ restaurant.email }}
+                </a>
               </p>
             </div>
           </div>
@@ -52,7 +58,9 @@
             <div class="header-address col-auto">
               <p>
                 <i class="fas fa-map-marker-alt" />
-                <a href="">C/Example, Nº</a>
+                <a href="">
+                  {{ restaurant.address }}
+                </a>
               </p>
               <p>
                 <i class="far fa-clock" />
@@ -65,6 +73,34 @@
     </div>
   </section>
 </template>
+<script>
+export default {
+  props: {
+    restaurant: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+  computed: {
+    formattedWeb () {
+      const http = 'http://www.'
+      const https = 'https://www.'
+      const website = this.restaurant.website
+      let formatted
+      if (website.includes(http)) {
+        formatted = website.slice(http.length)
+      } else if (website.includes(https)) {
+        formatted = website.slice(https.length)
+      } else {
+        formatted = website
+      }
+      return formatted
+    }
+  }
+}
+</script>
 <style scoped>
 .header-foto {
     height: 40vh;

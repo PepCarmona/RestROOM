@@ -1,13 +1,24 @@
 <template>
   <div class="menu-categories scrollable-tabs row justify-content-center align-items-center">
     <ul>
-      <li>Drinks</li>
-      <li>Sides</li>
-      <li>Main</li>
-      <li>Coffee</li>
+      <li v-for="item in content" :key="item.id">
+        {{ item.name }}
+      </li>
     </ul>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    content: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  }
+}
+</script>
 <style scoped>
 .scrollable-tabs {
     padding-top: 3vh;

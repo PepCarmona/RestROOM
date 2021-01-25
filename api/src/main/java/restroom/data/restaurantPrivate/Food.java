@@ -4,11 +4,14 @@
  */
 package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,14 +20,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import restroom.service.restaurantPrivate.MenuService;
 
 /**
  *
  * @author PepCarmona
  */
 @Entity
-@JsonIgnoreProperties({"menus", "allergens"})
+@JsonIgnoreProperties({"menus"})
 public class Food implements Serializable {
     
     
@@ -61,7 +63,7 @@ public class Food implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "menu_ID")})
     private List<Menu> menus;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "food_allergen",
             joinColumns = {@JoinColumn(name = "food_ID")},

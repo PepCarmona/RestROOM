@@ -8,15 +8,13 @@
         {{ food.name }}
       </div>
       <div class="food-description">
-        description
+        {{ food.description }}
       </div>
       <div class="food-type">
         {{ food.type }}
       </div>
       <div class="food-allergens">
-        <div v-for="allergen in food.allergens" :key="allergen.id">
-          {{ allergen }}
-        </div>
+        <div v-for="allergen in food.allergens" :key="allergen.id" :style="{ backgroundImage: `url('/img/allergens/`+allergen.allergen_ID+`.png')`}" />
       </div>
       <div class="food-buy">
         <p>
@@ -45,7 +43,7 @@ export default {
 .food-item {
     background-color: var(--transparent-white);
     padding: 10px;
-    height: 180px;
+    min-height: 180px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
@@ -79,7 +77,7 @@ export default {
 }
 .food-allergens div {
     margin-left: 5px;
-    background-color: paleturquoise;
+    background-size: contain;
     height: 30px;
     width: 30px;
 }

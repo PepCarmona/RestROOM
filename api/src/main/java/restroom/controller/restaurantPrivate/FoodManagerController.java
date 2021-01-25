@@ -19,7 +19,7 @@ import restroom.service.restaurantPrivate.FoodService;
  */
 
 @RestController
-@RequestMapping("manage/food")
+@RequestMapping("api/manage/food")
 public class FoodManagerController {
     
     @Autowired

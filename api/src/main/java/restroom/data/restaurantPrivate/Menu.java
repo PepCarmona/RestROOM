@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,6 @@ import javax.persistence.ManyToMany;
  * @author PepCarmona
  */
 @Entity
-@JsonIgnoreProperties({"foods"})
 public class Menu implements Serializable {
     
     @Id
@@ -41,7 +41,7 @@ public class Menu implements Serializable {
     
     private Boolean available;
     
-    @ManyToMany(mappedBy = "menus")
+    @ManyToMany(mappedBy = "menus", fetch = FetchType.EAGER)
     private List<Food> foods;
     
     public Menu() {

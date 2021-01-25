@@ -21,7 +21,7 @@ import restroom.service.restaurantPrivate.MenuService;
  * @author PepCarmona
  */
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("api/menu")
 public class MenuController {
     
     @Autowired private MenuService menuService;

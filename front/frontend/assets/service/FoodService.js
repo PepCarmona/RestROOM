@@ -8,11 +8,11 @@ export default class FoodApi {
   findAll () {
     return this.axios({
       method: 'get',
-      url: 'food/all'
+      url: 'manage/food/all'
     }).then((response) => {
       const foods = []
       response.data.forEach((food) => {
-        foods.push(new Food(food.food_ID, food.name, food.foodType.name, [], food.price))
+        foods.push(new Food(food.food_ID, food.name, food.description, food.foodType.name, food.allergens, food.price))
       })
       return foods
     })

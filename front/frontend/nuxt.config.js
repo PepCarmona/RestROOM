@@ -51,10 +51,10 @@ export default {
   axios: {
     proxy: true,
     host: 'localhost',
-    prefix: '/manage/'
+    prefix: '/api/'
   },
   proxy: {
-    '/manage/': 'http://localhost:8081/'
+    '/api/': 'http://localhost:8081/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
