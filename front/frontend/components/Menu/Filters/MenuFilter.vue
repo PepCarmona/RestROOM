@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-selector col">
+  <div :class="className" class="col">
     <button class="food-menu dropdown btn">
       {{ text }}
       <i class="fas fa-sort-down" />
@@ -26,6 +26,11 @@ export default {
       default () {
         return ''
       }
+    }
+  },
+  computed: {
+    className () {
+      return this.text.toString().toLowerCase().replace(/\s/g, '') + '-selector'
     }
   }
 }

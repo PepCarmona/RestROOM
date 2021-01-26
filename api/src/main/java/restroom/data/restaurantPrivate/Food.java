@@ -4,11 +4,9 @@
  */
 package restroom.data.restaurantPrivate;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +24,6 @@ import javax.persistence.OneToOne;
  * @author PepCarmona
  */
 @Entity
-@JsonIgnoreProperties({"menus"})
 public class Food implements Serializable {
     
     
@@ -56,19 +53,19 @@ public class Food implements Serializable {
     @ManyToOne
     private FoodType foodType;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "menu_item",
             joinColumns = {@JoinColumn(name = "food_ID")},
             inverseJoinColumns = {@JoinColumn(name = "menu_ID")})
-    private List<Menu> menus;
+    private Set<Menu> menus;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "food_allergen",
             joinColumns = {@JoinColumn(name = "food_ID")},
             inverseJoinColumns = {@JoinColumn(name = "allergen_ID")})
-    private List<Allergen> allergens;
+    private Set<Allergen> allergens;
     
     public Food() {
     }
@@ -129,11 +126,11 @@ public class Food implements Serializable {
         return foodType;
     }
 
-    public List<Menu> getMenus() {
+    public Set<Menu> getMenus() {
         return menus;
     }
 
-    public List<Allergen> getAllergens() {
+    public Set<Allergen> getAllergens() {
         return allergens;
     }
 }

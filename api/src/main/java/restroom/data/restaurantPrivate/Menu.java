@@ -7,7 +7,7 @@ package restroom.data.restaurantPrivate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
  * @author PepCarmona
  */
 @Entity
+@JsonIgnoreProperties({"foods"})
 public class Menu implements Serializable {
     
     @Id
@@ -42,7 +43,7 @@ public class Menu implements Serializable {
     private Boolean available;
     
     @ManyToMany(mappedBy = "menus", fetch = FetchType.EAGER)
-    private List<Food> foods;
+    private Set<Food> foods;
     
     public Menu() {
     }
@@ -79,7 +80,7 @@ public class Menu implements Serializable {
         return available;
     }
 
-    public List<Food> getFoods() {
+    public Set<Food> getFoods() {
         return foods;
     }
 }

@@ -1,11 +1,13 @@
 export default class Food {
-  constructor (id, name, description, type, allergens, price, available) {
+  constructor (id, name, description, available, price, category, type, menus, allergens) {
     this.id = id
     this.name = name
     this.description = description
-    this.type = type
-    this.allergens = allergens
-    this.price = price
     this.available = available
+    this.price = price
+    this.category = category
+    this.type = type
+    this.menus = menus
+    this.allergens = allergens
   }
 }
