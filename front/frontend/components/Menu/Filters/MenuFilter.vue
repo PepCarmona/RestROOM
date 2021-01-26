@@ -7,6 +7,7 @@
     <div class="food-menu dropdown">
       <div v-for="item in content" :key="item.id">
         {{ item.name }}
+        <input :id="item.id" type="checkbox" :name="item.name">
       </div>
     </div>
   </div>

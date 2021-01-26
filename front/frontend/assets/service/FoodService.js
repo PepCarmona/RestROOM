@@ -12,7 +12,7 @@ export default class FoodApi {
     }).then((response) => {
       const foods = []
       response.data.forEach((food) => {
-        foods.push(new Food(food.food_ID, food.name, food.description, food.foodType.name, food.allergens, food.price))
+        foods.push(new Food(food.food_ID, food.name, food.description, food.foodType.name, food.allergens, food.price, food.available))
       })
       return foods
     })

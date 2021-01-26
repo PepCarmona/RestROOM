@@ -3,6 +3,7 @@
     <restaurant-header :restaurant="restaurant" />
     <restaurant-tab />
     <restaurant-menu :foods="foods" :menus="menus" :types="types" :allergens="allergens" :categories="categories" />
+    <shopping-cart />
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 import RestaurantHeader from '~/components/Menu/RestaurantHeader.vue'
 import RestaurantMenu from '~/components/Menu/RestaurantMenu.vue'
 import RestaurantTab from '~/components/Menu/RestaurantTab.vue'
+import ShoppingCart from '~/components/Menu/ShopingCart.vue'
 
 export default {
   components: {
     RestaurantHeader,
     RestaurantMenu,
-    RestaurantTab
+    RestaurantTab,
+    ShoppingCart
   },
   async asyncData (ctx) {
     return {

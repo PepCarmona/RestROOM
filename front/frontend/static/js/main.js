@@ -120,3 +120,14 @@ $('div.dropdown>div').on('click', function(e) {
     let icon = "<i class='fas fa-sort-down' />";
     button.html(option.text()+icon);
 });
+
+/* shopping cart */
+$(".shopping-cart").on('click', function() {
+    if ($('.cart').css('right')=='0px'){
+        $('.cart').animate({right: '-250px'})
+        $('.shopping-list').hide(300)
+    } else if ($('.cart').css('right')=='-250px') {
+        $('.cart').animate({right: '0px'})
+        $('.shopping-list').show(350)
+    }
+})

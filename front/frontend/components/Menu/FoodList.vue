@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="food-list col-10 container">
-      <div v-for="food in foods" :key="food.id" class="food-item-container">
+      <div v-for="food in activeFoods" :key="food.id" class="food-item-container">
         <div class="separator-horizontal" />
         <food-item :food="food" />
       </div>
@@ -21,6 +21,11 @@ export default {
       default () {
         return []
       }
+    }
+  },
+  computed: {
+    activeFoods () {
+      return this.foods.filter(food => food.available === true)
     }
   }
 }
