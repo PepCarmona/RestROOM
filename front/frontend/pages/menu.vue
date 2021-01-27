@@ -2,7 +2,14 @@
   <div>
     <restaurant-header :restaurant="restaurant" />
     <restaurant-tab />
-    <restaurant-menu :foods="foods" :menus="menus" :types="types" :allergens="allergens" :categories="categories" />
+    <restaurant-menu
+      :foods="foods"
+      :menus="menus"
+      :types="types"
+      :allergens="allergens"
+      :categories="categories"
+      :picked-category="pickedCategory"
+    />
     <shopping-cart />
   </div>
 </template>
@@ -50,6 +57,9 @@ export default {
       },
       categories: {
         type: Array
+      },
+      pickedCategory: {
+        type: Object
       }
     }
   }

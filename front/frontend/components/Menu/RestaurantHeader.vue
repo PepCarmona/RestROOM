@@ -112,6 +112,7 @@ export default {
 }
 .restaurant-header {
     background-color: var(--hard-orange);
+    z-index: 9;
 }
 .restaurant-header > .container > .row {
     padding: 10px;
@@ -152,5 +153,44 @@ export default {
 }
 .header-contact {
     margin-bottom: 10px;
+}
+@media only screen and (max-width: 468px) {
+    .restaurant-header > .container {
+        box-sizing: border-box;
+    }
+    .header-foto {
+        height: 60vh;
+    }
+    .header-basic {
+        width: 100%;
+    }
+    .header-basic .row:nth-child(2) {
+        margin-top: 5px;
+        justify-content: space-between !important;
+    }
+    .header-food-type, .header-rating {
+        width: auto;
+    }
+    .header-info {
+        width: 100%;
+    }
+    .header-logo {
+        width: 120px;
+        height: 120px;
+    }
+    .header-name {
+        width: 60%;
+    }
+    .header-info {
+        border-left: none;
+        margin-top: 20px;
+    }
+    .header-info .row div {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    .header-info p {
+        width: 100%;
+    }
 }
 </style>

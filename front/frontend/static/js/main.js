@@ -131,3 +131,12 @@ $(".shopping-cart").on('click', function() {
         $('.shopping-list').show(350)
     }
 })
+/* categories */
+$('.scrollable-tabs li').on('click', function() {
+    $('.scrollable-tabs li').each(function() {
+        $(this).removeClass('active')
+    })
+    $(this).children('input').prop('checked', true)
+    $(this).addClass('active')
+    console.log($(this).children('input').prop('value'))
+})

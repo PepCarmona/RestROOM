@@ -7,7 +7,8 @@
         <menu-filter :content="allergens" :text="text.allergen" />
         <menu-filter :text="text.order" />
       </div>
-      <menu-categories :content="categories" />
+      <menu-categories v-model="pickedCategory" :content="categories" />
+      <span>x: {{ pickedCategory }}</span>
     </div>
   </div>
 </template>
@@ -44,6 +45,12 @@ export default {
       default () {
         return []
       }
+    },
+    pickedCategory: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   data () {
@@ -65,13 +72,23 @@ export default {
 </script>
 <style scoped>
 .menu-filters {
-    background-color: var(--transparent-white);
-    padding-top: 15px;
+    margin-top: 40px;
+    padding-bottom: 30px;
 }
 .menu-filters > div {
+    width: 100vw;
     margin: 1px;
     padding-top: 5px;
     position: relative;
     display: inline-block;
+    flex-shrink: 0;
+}
+@media only screen and (max-width: 468px) {
+    .menu-filters {
+        display: inline-block;
+    }
+    .menu-filters > div {
+        width: 100%;
+    }
 }
 </style>

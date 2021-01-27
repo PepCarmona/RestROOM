@@ -28,7 +28,7 @@ export default class MenuApi {
     }).then((response) => {
       const categories = []
       response.data.forEach((category) => {
-        categories.push(new MenuCategory(category.category_ID, category.name))
+        categories.push(new MenuCategory(category.id, category.name))
       })
       return categories
     })

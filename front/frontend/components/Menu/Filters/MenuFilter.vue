@@ -5,8 +5,8 @@
       <i class="fas fa-sort-down" />
     </button>
     <div class="food-menu dropdown">
-      <div v-for="item in content" :key="item.id">
-        {{ item.name }}
+      <div v-for="item in capitalFilterOptions" :key="item.id">
+        {{ item }}
         <input :id="item.id" type="checkbox" :name="item.name">
       </div>
     </div>
@@ -31,6 +31,11 @@ export default {
   computed: {
     className () {
       return this.text.toString().toLowerCase().replace(/\s/g, '') + '-selector'
+    },
+    capitalFilterOptions () {
+      return this.content.map(function (item) {
+        return item.name.charAt(0).toUpperCase() + item.name.slice(1)
+      })
     }
   }
 }
@@ -39,10 +44,15 @@ export default {
 button.dropdown {
     background-color:  var(--light-orange);
     border: 1px solid var(--border-gray);
+    border-radius: 3px;
     text-align: left;
     padding-left: 20%;
     width: 100%;
     position: relative;
+    box-shadow: 0 0 3px grey;
+}
+button.dropdown:hover {
+    box-shadow: 0 0 3px 1px grey;
 }
 button.dropdown > i {
   position: absolute;
@@ -64,6 +74,7 @@ div.dropdown {
     margin-top: 4px;
     right: 12px;
     text-align: center;
+    box-shadow: 0 0 2px 1px grey inset;
 }
 div.dropdown > div {
     padding: 5px;
@@ -71,5 +82,10 @@ div.dropdown > div {
 }
 div.dropdown > div:hover {
     background-color: var(--light-orange);
+    box-shadow: 0 0 2px 1px grey inset;
+}
+div.dropdown > div.active {
+    background-color: var(--light-orange);
+    box-shadow: 0 0 2px 1px grey inset;
 }
 </style>
