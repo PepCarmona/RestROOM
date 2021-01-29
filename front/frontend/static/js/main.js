@@ -132,11 +132,10 @@ $(".shopping-cart").on('click', function() {
     }
 })
 /* categories */
-$('.scrollable-tabs li').on('click', function() {
-    $('.scrollable-tabs li').each(function() {
+$('.menu-categories label[id = "5"]').addClass('active')
+$('.scrollable-tabs li label').on('click', function() {
+    $('.scrollable-tabs li label').each(function() {
         $(this).removeClass('active')
     })
-    $(this).children('input').prop('checked', true)
     $(this).addClass('active')
-    console.log($(this).children('input').prop('value'))
 })

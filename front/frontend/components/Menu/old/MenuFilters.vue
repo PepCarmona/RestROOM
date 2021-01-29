@@ -7,8 +7,7 @@
         <menu-filter :content="allergens" :text="text.allergen" />
         <menu-filter :text="text.order" />
       </div>
-      <menu-categories v-model="pickedCategory" :content="categories" />
-      <span>x: {{ pickedCategory }}</span>
+      <menu-categories :content="categories" :picked="picked" @input="$emit('input', $event.target.value)" />
     </div>
   </div>
 </template>
@@ -46,10 +45,10 @@ export default {
         return []
       }
     },
-    pickedCategory: {
-      type: Object,
+    picked: {
+      type: String,
       default () {
-        return {}
+        return ''
       }
     }
   },

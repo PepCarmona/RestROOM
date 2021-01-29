@@ -21,6 +21,19 @@ export default class MenuApi {
     })
   }
 
+  findActiveMenus () {
+    return this.axios({
+      menthod: 'get',
+      url: 'menu/active'
+    }).then((response) => {
+      const menus = []
+      response.data.forEach((menu) => {
+        menus.push(new Menu(menu.menu_ID, menu.name, menu.description, menu.date_start, menu.date_finish, menu.available))
+      })
+      return menus
+    })
+  }
+
   findAllCategories () {
     return this.axios({
       menthod: 'get',
@@ -31,6 +44,15 @@ export default class MenuApi {
         categories.push(new MenuCategory(category.id, category.name))
       })
       return categories
+    })
+  }
+
+  findCategoryById (id) {
+    return this.axios({
+      menthod: 'get',
+      url: 'menu/category/' + id
+    }).then((response) => {
+      return response.data
     })
   }
 

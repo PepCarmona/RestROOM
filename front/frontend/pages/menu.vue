@@ -4,11 +4,14 @@
     <restaurant-tab />
     <restaurant-menu
       :foods="foods"
-      :menus="menus"
+      :menus="activeMenus"
       :types="types"
       :allergens="allergens"
       :categories="categories"
       :picked-category="pickedCategory"
+      :picked-menu="pickedMenu"
+      :picked-types="pickedFoodTypes"
+      :picked-allergens="pickedAllergens"
     />
     <shopping-cart />
   </div>
@@ -33,9 +36,13 @@ export default {
       restaurant: await ctx.app.$services.public.findRestaurantById(3),
       foods: await ctx.app.$services.food.findAll(),
       menus: await ctx.app.$services.menu.findAllMenus(),
+      activeMenus: await ctx.app.$services.menu.findActiveMenus(),
       types: await ctx.app.$services.menu.findAllFoodTypes(),
       allergens: await ctx.app.$services.menu.findAllAllergens(),
-      categories: await ctx.app.$services.menu.findAllCategories()
+      categories: await ctx.app.$services.menu.findAllCategories(),
+      pickedFoodTypes: await ctx.app.$services.menu.findAllFoodTypes(),
+      pickedAllergens: [],
+      pickedCategory: await ctx.app.$services.menu.findCategoryById(5)
     }
   },
   data () {
@@ -49,6 +56,9 @@ export default {
       menus: {
         type: Array
       },
+      activeMenus: {
+        type: Array
+      },
       types: {
         type: Array
       },
@@ -58,9 +68,20 @@ export default {
       categories: {
         type: Array
       },
+      pickedFoodTypes: {
+        type: Array
+      },
+      pickedAllergens: {
+        type: Array
+      },
       pickedCategory: {
         type: Object
       }
+    }
+  },
+  computed: {
+    pickedMenu () {
+      return this.activeMenus[0]
     }
   }
 }

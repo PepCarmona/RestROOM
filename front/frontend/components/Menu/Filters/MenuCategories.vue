@@ -1,16 +1,20 @@
 <template>
   <div class="menu-categories scrollable-tabs row justify-content-center align-items-center">
     <ul>
-      <li v-for="item in capitalCategoryNames" :key="item.id">
-        {{ item.name }}
-        <input :id="item.id" type="radio" name="category" :value="item.value">
+      <li v-for="item in content" :key="item.id">
+        <label :id="item.id">
+          <input
+            :id="item.id"
+            type="radio"
+            name="category"
+            :value="item.name"
+            :checked="value.name == item.name"
+            @input="$emit('input', item)"
+          >
+          {{ item.name }}
+        </label>
       </li>
     </ul>
-    <input id="one" v-model="picked" type="radio" name="one" :value="message">
-    <input id="two" v-model="picked" type="radio" name="one" :value="message2">
-    <span>Radio: {{ picked }}</span>
-    <input v-model="message" placeholder="edíteme">
-    <p>El mensaje es: {{ message }}</p>
   </div>
 </template>
 <script>
@@ -22,22 +26,10 @@ export default {
         return []
       }
     },
-    message: {
-      type: String,
+    value: {
+      type: Object,
       default () {
-        return 'default'
-      }
-    },
-    message2: {
-      type: String,
-      default () {
-        return 'default2'
-      }
-    },
-    picked: {
-      type: String,
-      default () {
-        return ''
+        return {}
       }
     }
   },
@@ -80,7 +72,7 @@ export default {
 ::-webkit-scrollbar-thumb {
     background-color: var(--hard-orange);
 }
-.scrollable-tabs li {
+.scrollable-tabs li label {
     display: inline-block;
     height: 50px;
     min-width: 100px;
@@ -90,14 +82,14 @@ export default {
     line-height: 50px;
     white-space: normal;
 }
-.scrollable-tabs li:hover {
+.scrollable-tabs li label:hover {
     cursor: pointer;
     background-color: rgba(196, 127, 0, 0.253);
 }
 .scrollable-tabs li input {
-    display: block;
+    display: none;
 }
-.scrollable-tabs li.active {
+.scrollable-tabs li label.active {
     background-color: rgba(196, 127, 0, 0.253);
     box-shadow: 0 0 4px grey inset;
 }

@@ -9,7 +9,7 @@
         <label>
           <input
             :id="item.id"
-            type="radio"
+            type="checkbox"
             :name="text"
             :value="item.name"
             :checked="value.name == item.name"
@@ -37,9 +37,9 @@ export default {
       }
     },
     value: {
-      type: Object,
+      type: Array,
       default () {
-        return {}
+        return []
       }
     }
   },
