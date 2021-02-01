@@ -14,13 +14,15 @@
         {{ capitalFoodType }}
       </div>
       <div class="food-allergens">
-        <div v-for="allergen in food.allergens" :key="allergen.id" :style="{ backgroundImage: `url('/img/allergens/`+allergen.allergen_ID+`.png')`}" />
+        <div v-for="allergen in food.allergens" :key="allergen.id" :style="{ backgroundImage: `url('/img/allergens/`+allergen.allergen_ID+`.png')`}">
+          <span class="tooltip">{{ allergen.name }}</span>
+        </div>
       </div>
       <div class="food-buy">
         <p>
           {{ food.price }} €
         </p>
-        <button class="btn">
+        <button class="btn" @click="addToCart">
           Add
         </button>
       </div>
@@ -46,6 +48,11 @@ export default {
     },
     capitalFoodDescription () {
       return this.food.description.charAt(0).toUpperCase() + this.food.description.slice(1)
+    }
+  },
+  methods: {
+    addToCart () {
+      this.$emit('add-to-cart', this.food)
     }
   }
 }
@@ -100,6 +107,34 @@ export default {
     background-size: contain;
     height: 30px;
     width: 30px;
+    position: relative;
+}
+.tooltip {
+  visibility: hidden;
+  background-color: var(--light-orange);
+  color: white;
+  width: 125px;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 5px;
+  top: 120%;
+  left: 50%;
+  margin-left: -72px;
+  position: absolute;
+  z-index: 9;
+}
+.tooltip::after {
+  content: ' ';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--light-orange) transparent;
+}
+.food-allergens div:hover .tooltip {
+  visibility: visible;
 }
 .food-buy {
     width: 22%;

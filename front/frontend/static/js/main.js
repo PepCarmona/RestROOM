@@ -78,7 +78,7 @@ $(".food-item").on('click', function() {
 });
 
 $('button.dropdown').on('click', function(e) {
-    let btnClass = e.target.classList.item(0);
+    let btnClass = e.target.classList.item(e.target.classList.length-1);
     let btnIcon = $(this).children('i');
     $('div.dropdown').each(function() {
         if (!$(this).hasClass(btnClass)) {
@@ -100,7 +100,7 @@ $('button.dropdown').on('click', function(e) {
         btnIcon.addClass('fa-sort-down');
     }
 });
-
+/*
 $(window).on('click', function(e) {
     if (!e.target.matches('.dropdown')) {
         $('div.dropdown').each(function() {
@@ -113,12 +113,15 @@ $(window).on('click', function(e) {
         });
     }
 });
-
-$('div.dropdown>div').on('click', function(e) {
-    let option = $(this);
-    let button = option.parent().prev('button');
-    let icon = "<i class='fas fa-sort-down' />";
-    button.html(option.text()+icon);
+*/
+$('div.menus-dropdown').children().first().addClass('active')
+$('div.dropdown input').on('click', function() {
+    if ($(this).attr('type') == 'radio') {
+        $(this).parent().siblings().removeClass('active')
+        $(this).parent().addClass('active')
+    } else if ($(this).attr('type') == 'checkbox') {
+        $(this).parent().toggleClass('active')
+    }
 });
 
 /* shopping cart */

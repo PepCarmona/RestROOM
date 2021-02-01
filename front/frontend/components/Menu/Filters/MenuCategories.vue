@@ -64,13 +64,13 @@ export default {
     cursor: grabbing;
 }
 ::-webkit-scrollbar {
-    height: 3px;
+    height: 5px;
 }
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--hard-orange);
+    background-color: rgb(184, 152, 110);
 }
 .scrollable-tabs li label {
     display: inline-block;

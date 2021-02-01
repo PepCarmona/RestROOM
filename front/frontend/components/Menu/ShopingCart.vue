@@ -11,36 +11,60 @@
         <p>Items</p> <p>Qty</p>
       </div>
       <ul>
-        <li class="shopping-list-item">
-          <i class="far fa-times-circle" /> <p>Burger</p> <p>1</p>
-        </li>
-        <li class="shopping-list-item">
-          <p>Pizza</p> <p>3</p>
-        </li>
-        <li class="shopping-list-item">
-          <p>Water</p> <p>2</p>
-        </li>
-        <li class="shopping-list-item">
-          <p>Beer</p> <p>2</p>
-        </li>
-        <li class="shopping-list-item">
-          <p>Brownie</p> <p>4</p>
+        <li v-for="food in cartFoods" :key="food.id" class="shopping-list-item">
+          <p>{{ food.name }}</p> <p>{{ food.quantity }}</p>
         </li>
       </ul>
       <div class="shopping-list-total">
-        <p>Total: </p><p>30 €</p>
+        <p>Total: </p><p>{{ cartTotal }} €</p>
       </div>
       <div class="shopping-buttons">
         <button class="btn shopping-list-pay">
           Pay
         </button>
-        <button class="btn shopping-list-clean">
+        <button class="btn shopping-list-clean" @click="cleanCart">
           <i class="fa fa-trash" />
         </button>
       </div>
     </div>
   </section>
 </template>
+<script>
+export default {
+  props: {
+    cartFoods: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
+  computed: {
+    cartTotal () {
+      let total = 0
+      this.cartFoods.forEach(function (food) {
+        total = total + food.price * food.quantity
+      })
+      return Math.round((total + Number.EPSILON) * 100) / 100
+    }
+  },
+  methods: {
+    addToCart (food) {
+      const cartFoods = this.cartFoods
+      if (!cartFoods.includes(food)) {
+        food.quantity = 1
+        cartFoods.push(food)
+      } else {
+        cartFoods[cartFoods.indexOf(food)].quantity += 1
+        this.$set(cartFoods, cartFoods.indexOf(food), food)
+      }
+    },
+    cleanCart () {
+      this.cartFoods.splice(0)
+    }
+  }
+}
+</script>
 <style scoped>
 .cart {
     position: fixed;
@@ -110,13 +134,13 @@ button.shopping-cart {
     box-shadow: 0 10px 5px  -10px black inset, 0 -10px 5px -10px black inset;
 }
 ::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--hard-orange);
+    background-color: rgb(184, 152, 110);
 }
 .shopping-list ul li {
     height: 40px;

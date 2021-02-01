@@ -10,10 +10,13 @@
       :categories="categories"
       :picked-category="pickedCategory"
       :picked-menu="pickedMenu"
-      :picked-types="pickedFoodTypes"
+      :picked-food-types="pickedFoodTypes"
+      :picked-food-type="pickedFoodType"
       :picked-allergens="pickedAllergens"
+      :picked-allergen="pickedAllergen"
+      @add-to-cart="addToCart"
     />
-    <shopping-cart />
+    <shopping-cart ref="shoppingCart" />
   </div>
 </template>
 
@@ -40,7 +43,7 @@ export default {
       types: await ctx.app.$services.menu.findAllFoodTypes(),
       allergens: await ctx.app.$services.menu.findAllAllergens(),
       categories: await ctx.app.$services.menu.findAllCategories(),
-      pickedFoodTypes: await ctx.app.$services.menu.findAllFoodTypes(),
+      pickedFoodTypes: [],
       pickedAllergens: [],
       pickedCategory: await ctx.app.$services.menu.findCategoryById(5)
     }
@@ -52,6 +55,9 @@ export default {
       },
       foods: {
         type: Array
+      },
+      pickedFood: {
+        type: Object
       },
       menus: {
         type: Array
@@ -71,8 +77,14 @@ export default {
       pickedFoodTypes: {
         type: Array
       },
+      pickedFoodType: {
+        type: Object
+      },
       pickedAllergens: {
         type: Array
+      },
+      pickedAllergen: {
+        type: Object
       },
       pickedCategory: {
         type: Object
@@ -82,6 +94,12 @@ export default {
   computed: {
     pickedMenu () {
       return this.activeMenus[0]
+    }
+  },
+  methods: {
+    addToCart (food) {
+      this.pickedFood = food
+      this.$refs.shoppingCart.addToCart(this.pickedFood)
     }
   }
 }

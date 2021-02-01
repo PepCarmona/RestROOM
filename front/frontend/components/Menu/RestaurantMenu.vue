@@ -5,17 +5,14 @@
         <div class="menu-tab col-10 container">
           <div class="menu-filters row justify-content-around align-items-center">
             <menu-filter v-model="pickedMenu" :content="activeMenus" text="Menus" />
-            <menu-filter-multi v-model="pickedTypes" :content="types" text="Food Types" />
-            <menu-filter-multi v-model="pickedAllergens" :content="allergens" text="Allergens" />
+            <menu-filter-multi v-model="pickedFoodType" :content="types" text="Food Types" @input="inputFoodTypes" />
+            <menu-filter-multi v-model="pickedAllergen" :content="allergens" text="Allergens" @input="inputAllergens" />
             <menu-filter text="Order By" />
           </div>
-          <span>Menu: {{ pickedMenu }}</span>
-          <span>Types: {{ pickedTypes }}</span>
-          <span>Allergens: {{ pickedAllergens }}</span>
           <menu-categories v-model="pickedCategory" :content="categories" />
         </div>
       </div>
-      <food-list :foods="foods" :picked-category="pickedCategory" />
+      <food-list :foods="filteredFoods" :picked-category="pickedCategory" @add-to-cart="addToCart" />
     </div>
   </section>
 </template>
@@ -73,10 +70,16 @@ export default {
         return {}
       }
     },
-    pickedTypes: {
+    pickedFoodTypes: {
       type: Array,
       default () {
         return []
+      }
+    },
+    pickedFoodType: {
+      type: Object,
+      default () {
+        return {}
       }
     },
     pickedAllergens: {
@@ -84,16 +87,79 @@ export default {
       default () {
         return []
       }
+    },
+    pickedAllergen: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   computed: {
     activeMenus () {
       return this.menus.filter(menu => menu.available === true)
+    },
+    filteredFoods () {
+      let filteredFoods = this.foods
+      const pickedMenu = this.pickedMenu
+      const pickedCategory = this.pickedCategory
+      const pickedFoodTypes = this.pickedFoodTypes
+      const pickedAllergens = this.pickedAllergens
+      filteredFoods = filteredFoods.filter(food => food.menus.some(menu => menu.menu_ID === pickedMenu.id))
+      filteredFoods = filteredFoods.filter(food => food.category.id === pickedCategory.id)
+      if (pickedFoodTypes.length > 0) {
+        filteredFoods = filteredFoods.filter(food => pickedFoodTypes.some(foodType => foodType.id === food.type.food_type_ID))
+      }
+      filteredFoods = filteredFoods.filter(food => !food.allergens.some(foodAllergen => pickedAllergens.some(allergen => allergen.id === foodAllergen.allergen_ID)))
+      return filteredFoods
+    }
+
+  },
+  methods: {
+    inputFoodTypes (foodType) {
+      let found = false
+      const list = this.pickedFoodTypes
+      list.forEach(function (element, index) {
+        if (element.id === foodType.id) {
+          found = true
+          list.splice(index, 1)
+          return false
+        }
+      })
+      if (!found) {
+        list.push(foodType)
+      }
+    },
+    inputAllergens (allergen) {
+      let found = false
+      const list = this.pickedAllergens
+      list.forEach(function (element, index) {
+        if (element.id === allergen.id) {
+          found = true
+          list.splice(index, 1)
+          return false
+        }
+      })
+      if (!found) {
+        list.push(allergen)
+      }
+    },
+    addToCart (food) {
+      this.$emit('add-to-cart', food)
     }
   }
 }
 </script>
 <style scoped>
+.menu-filters {
+  margin-bottom: 50px;
+}
+.menu-filters > div {
+    margin: 1px;
+    padding-top: 5px;
+    position: relative;
+    display: inline-block;
+}
 @media only screen and (max-width: 1000px){
     .restaurant-menu .container, .restaurant-menu .col-10{
         width: 90%;
