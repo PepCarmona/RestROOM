@@ -4,14 +4,18 @@
       <div class="container">
         <div class="row justify-content-between align-items-center">
           <div class="public-logo col-2">
-            <img src="img/logo-transparent.png" alt="MyApp Logo">
+            <nuxt-link to="/restaurants">
+              <img src="img/logo-transparent.png" alt="MyApp Logo">
+            </nuxt-link>
           </div>
           <div class="col-auto">
             <ul class="desktop-menu nav">
               <!-- check links -->
               <a class="nav-link" href="#explore">Explora</a>
               <a class="nav-link" href="#help">Ayuda</a>
-              <a class="nav-link" href="login.html">Login/Register</a>
+              <nuxt-link to="/login">
+                <span class="nav-link">Login/Register</span>
+              </nuxt-link>
             </ul>
           </div>
           <div class="mobile-menu col-auto">
@@ -36,6 +40,7 @@ export default {
 .header {
     box-sizing: border-box;
     position: absolute;
+    top: 0;
     width: 100vw;
     background-color: var(--hard-orange);
     padding: 10px 10px 10px 15px;

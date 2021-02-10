@@ -53,11 +53,6 @@ $(function(){
             $(this).find("input").next().addClass("checked");
         }
     });
-
-    /* -- Restaurant List Click Listener -- */
-    $(".restaurant-wrapper").on('click', function(){
-        window.location.href = "restaurant.html";
-    });
 });
 /*
 $(function() {
@@ -124,7 +119,7 @@ $('div.dropdown input').on('click', function() {
     }
 });
 
-/* shopping cart */
+/* shopping cart 
 $(".shopping-cart").on('click', function() {
     if ($('.cart').css('right')=='0px'){
         $('.cart').animate({right: '-250px'})
@@ -133,12 +128,83 @@ $(".shopping-cart").on('click', function() {
         $('.cart').animate({right: '0px'})
         $('.shopping-list').show(350)
     }
-})
-/* categories */
+}) */
+/* categories 
 $('.menu-categories label[id = "5"]').addClass('active')
 $('.scrollable-tabs li label').on('click', function() {
     $('.scrollable-tabs li label').each(function() {
         $(this).removeClass('active')
     })
     $(this).addClass('active')
+}) */
+/* login */
+$('.see-password').on('click', function() {
+    btn = $(this)
+    if (btn.hasClass('fa-eye')) {
+        btn.removeClass('fa-eye')
+        btn.addClass('fa-eye-slash')
+        btn.siblings('input').attr('type', 'text')
+    } else if (btn.hasClass('fa-eye-slash')) {
+        btn.removeClass('fa-eye-slash')
+        btn.addClass('fa-eye')
+        btn.siblings('input').attr('type', 'password')
+    }
 })
+$('.link').on('click', function() {
+    $(this).parent().hide()
+    $(this).parent().siblings().show()
+})
+let changeView = function(actualView, targetView) {
+    actualView.animate({opacity: 0}, 200, function() {
+        actualView.hide(0, function() {
+            targetView.show()
+            targetView.animate({opacity: 1}, 200)
+        })
+    })
+}
+$('.signUp-signIn').on('click', function() {
+    let form = $(this).parent().parent()
+    changeView(form, form.siblings())
+
+})
+$('.register-types label').on('click', function() {
+    $(this).siblings().removeClass('active').addClass('disabled')
+    $(this).addClass('active')
+    $('.continue-buttons .continue').removeClass('disabled')
+})
+$('.continue-buttons button.continue').on('click', function() {
+    let registerHall = $('.register-types, .continue-buttons')
+    if ($('.register-types input[value="customer"]').is(':checked')) {
+        let form = $('.register-form.register-customer')
+        changeView(registerHall, form)
+        $('.register-super-form h2').text('Customer account')
+    }
+    else if ($('.register-types input[value="restaurant"]').is(':checked')) {
+        let form = $('.register-form.register-restaurant')
+        changeView(registerHall, form)
+        $('.register-super-form h2').text('Restaurant account')
+    }
+    else {
+        console.log('Selecciona algún input')
+    }
+})
+$('.login button.back').on('click', function() {
+    let form = $(this).parent().parent().parent()
+    let registerHall = $('.register-types, .continue-buttons')
+    changeView(form, registerHall)
+    $('.register-super-form h2').text('Create an account')
+})
+$('.account-info button.continue').on('click', function() {
+    let account = $('.register-restaurant .account-info')
+    let contact = $('.register-restaurant .contact-info')
+    changeView(account, contact)
+})
+/* --- form validation --- */
+let usernameRegex = /^([A-z]|[0-9]){5,20}$/
+let passwordRegex = /[0-9]+/
+let emailRegex
+let phoneRegex
+/*$('.register-form input[name="username"]').on('blur', function() {
+    let text = $(this).val()
+    if (text.match(/\W/))
+})*/

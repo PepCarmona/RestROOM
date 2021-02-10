@@ -4,19 +4,13 @@
  */
 package restroom.repository.restaurantPrivate;
 
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
-import restroom.data.restaurantPrivate.Menu;
+import restroom.data.restaurantPrivate.RService;
 
 /**
  *
  * @author PepCarmona
  */
-public interface MenuRepository extends CrudRepository<Menu, Integer>{
+public interface ServiceRepository extends CrudRepository<RService, Integer>{
     
-    public List<Menu> findByAvailableIsTrue();
-    
-    public List<Menu> findByRestaurant_id(int id);
-    
-    public List<Menu> findByRestaurant_idAndAvailableIsTrue(int id);
 }

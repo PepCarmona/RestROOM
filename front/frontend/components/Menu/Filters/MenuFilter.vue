@@ -1,11 +1,12 @@
 <template>
   <div class="col" :class="divClassName">
-    <button class="dropdown btn" :class="dropClassName">
+    <button class="dropdown btn" :class="dropClassName" @click="drop">
       {{ text }}
       <i class="fas fa-sort-down" />
     </button>
     <div class="dropdown" :class="dropClassName">
-      <label v-for="item in content" :id="item.id" :key="item.id">
+      <!--On click -> drop() -> check same class drop-->
+      <label v-for="item in content" :id="item.id" :key="item.id" :class="{ active: value.id == item.id}">
         <input
           :id="item.id"
           type="radio"
@@ -39,6 +40,12 @@ export default {
       default () {
         return {}
       }
+    },
+    isDropped: {
+      type: Boolean,
+      default () {
+        return false
+      }
     }
   },
   computed: {
@@ -52,6 +59,13 @@ export default {
       return this.content.map(function (item) {
         return item.name.charAt(0).toUpperCase() + item.name.slice(1)
       })
+    }
+  },
+  methods: {
+    drop (e) {
+      if (this.isDropped) {
+        this.isDropped = false
+      }
     }
   }
 }

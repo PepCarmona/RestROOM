@@ -14,9 +14,9 @@
 body {
     padding: 0;
     overflow-x: hidden;
-    /*background: linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)), url("/img/pattern5.png");
-    background-repeat: repeat;*/
-    background-color: var(--lightest-orange);
+    color: var(--letter-hard-gray);
+}
+body *, html * {
     color: var(--letter-hard-gray);
 }
 i {
@@ -25,6 +25,7 @@ i {
 a {
     color: var(--letter-gray);
 }
+/*
 
 .header {
     position: absolute;
@@ -141,9 +142,9 @@ a {
 }
 
 
-/* -- LIST.HTML --*/
+/* -- LIST.HTML --
 
-    /* -- Zip modifier -- */
+    /* -- Zip modifier -- 
 .zip-and-food {
     margin-top: 20vh;
 }
@@ -169,7 +170,7 @@ a {
     border-left-color: transparent !important;
 }
 
-    /* -- Food Type Carousel Selector --*/
+    /* -- Food Type Carousel Selector --
 .food-type-area {
     background-color: var(--transparent-white);
     border-radius: 10px;
@@ -215,80 +216,9 @@ a {
     outline: none !important;
 }
 
-    /* -- Services checks -- */
-.services-and-restaurant {
-    margin-top: 5vh;
-}
-.list-services-area {
-    padding: 10px;
-    background-color: var(--transparent-white);
-    border-radius: 10px;
-    height: fit-content;
-}
-.list-services-area h5 {
-    padding-top: 1vh;
-    margin-bottom: 2vh;
-    text-align: center;
-    padding-bottom: 1vh;
-    border-bottom: 1px solid black;
-}
-.check-services-2 div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    background-color: var(--transparent-white);
-    padding: 0px 10px 0px 15px;
-    border-radius: 5px;
-    border: 1px solid var(--border-gray);
-    margin-bottom: 8px;
-}
-.check-services-2 div p {
-    margin-top: 4%;
-}
+/* -- COMMON -- 
 
-    /* -- Restaurant Search Result List -- */
-.list-restaurant {
-    background-color: var(--transparent-white);
-    margin-left: -1vw;
-    margin-right: -1vw;
-    border-radius: 10px;
-    padding: 10px;
-    height: fit-content;
-}
-.restaurant-wrapper {
-    background-color: var(--transparent-white);
-    padding: 10px 0px 10px 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.restaurant-thumbnail {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 150px;
-    width: 150px;
-    background-color: paleturquoise;
-}
-.restaurant-thumbnail p {
-    width: fit-content;
-    padding: 0px 8px 3px 8px;
-    border-radius: 15px;
-    background-color: var(--transparent-white);
-}
-.restaurant-info p:nth-child(3) {
-    margin-top: 8%;
-    margin-left: 100%;
-    width: max-content;
-    padding: 0px 5px 0px 5px;
-    border-radius: 5px;
-    background-color: var(--transparent-white);
-}
-
-/* -- COMMON -- */
-
-    /* -- hidden checkbox -- */
+    /* -- hidden checkbox -- 
 .hidden-checkbox div {
     color: var(--letter-gray);
     cursor: pointer;
@@ -313,4 +243,14 @@ a {
 }
 .hidden-checkbox div input[type="checkbox"] {
     display: none;
+}
+*/
+
+.ccard {
+    padding: 0px 10px 0px 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px grey;
+}
+.ccard:hover {
+    box-shadow: 0 0 5px 1px grey;
 }

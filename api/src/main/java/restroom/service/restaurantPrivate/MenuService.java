@@ -41,10 +41,17 @@ public class MenuService {
         return menuRepository.findByAvailableIsTrue();
     }
     
+    public List<Menu> findActiveMenusByRestaurantId(int id) {
+        return menuRepository.findByRestaurant_idAndAvailableIsTrue(id);
+    }
+    
     public Menu findMenuById(int id) {
         return menuRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
     
+    public List<Menu> findMenusByRestaurantId(int id) {
+        return menuRepository.findByRestaurant_id(id);
+    }
     
     public List<Allergen> findAllAllergens() {
         return (List<Allergen>) allergenRepository.findAll();

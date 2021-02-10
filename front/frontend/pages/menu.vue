@@ -34,55 +34,34 @@ export default {
     RestaurantTab,
     ShoppingCart
   },
-  async asyncData (ctx) {
-    return {
-      restaurant: await ctx.app.$services.public.findRestaurantById(3),
-      foods: await ctx.app.$services.food.findAll(),
-      menus: await ctx.app.$services.menu.findAllMenus(),
-      activeMenus: await ctx.app.$services.menu.findActiveMenus(),
-      types: await ctx.app.$services.menu.findAllFoodTypes(),
-      allergens: await ctx.app.$services.menu.findAllAllergens(),
-      categories: await ctx.app.$services.menu.findAllCategories(),
-      pickedFoodTypes: [],
-      pickedAllergens: [],
-      pickedCategory: await ctx.app.$services.menu.findCategoryById(5)
-    }
+  async fetch () {
+    const selectedRestaurant = this.$store.state.selectedRestaurant
+    this.restaurant = selectedRestaurant
+    this.foods = await this.$services.food.findFoodByRestaurant(selectedRestaurant.id)
+    this.activeMenus = await this.$services.menu.findActiveMenusByRestaurant(selectedRestaurant.id)
+    this.types = await this.$services.menu.findAllFoodTypes()
+    this.allergens = await this.$services.menu.findAllAllergens()
+    this.categories = await this.$services.menu.findAllCategories()
+    this.pickedCategory = await this.$services.menu.findCategoryById(5)
   },
   data () {
     return {
       restaurant: {
         type: Object
       },
-      foods: {
-        type: Array
-      },
+      foods: [],
       pickedFood: {
         type: Object
       },
-      menus: {
-        type: Array
-      },
-      activeMenus: {
-        type: Array
-      },
-      types: {
-        type: Array
-      },
-      allergens: {
-        type: Array
-      },
-      categories: {
-        type: Array
-      },
-      pickedFoodTypes: {
-        type: Array
-      },
+      activeMenus: [],
+      types: [],
+      allergens: [],
+      categories: [],
+      pickedFoodTypes: [],
       pickedFoodType: {
         type: Object
       },
-      pickedAllergens: {
-        type: Array
-      },
+      pickedAllergens: [],
       pickedAllergen: {
         type: Object
       },

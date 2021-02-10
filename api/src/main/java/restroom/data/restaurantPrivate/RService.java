@@ -9,13 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author PepCarmona
  */
 @Entity
-public class Service implements Serializable {
+@Table(name = "service")
+public class RService implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +25,10 @@ public class Service implements Serializable {
     
     private String name;
 
-    public Service() {
+    public RService() {
     }
 
-    public Service(int service_ID, String name) {
+    public RService(int service_ID, String name) {
         this.service_ID = service_ID;
         this.name = name;
     }

@@ -34,6 +34,19 @@ export default class MenuApi {
     })
   }
 
+  findActiveMenusByRestaurant (id) {
+    return this.axios({
+      menthod: 'get',
+      url: 'menu/active/restaurant/' + id
+    }).then((response) => {
+      const menus = []
+      response.data.forEach((menu) => {
+        menus.push(new Menu(menu.menu_ID, menu.name, menu.description, menu.date_start, menu.date_finish, menu.available))
+      })
+      return menus
+    })
+  }
+
   findAllCategories () {
     return this.axios({
       menthod: 'get',

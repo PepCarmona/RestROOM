@@ -4,6 +4,7 @@
  */
 package restroom.controller.restaurantPrivate;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import restroom.data.restaurantPrivate.Food;
+import restroom.data.restaurantPrivate.Menu;
 import restroom.service.restaurantPrivate.FoodService;
+import restroom.service.restaurantPrivate.MenuService;
 
 /**
  *
@@ -22,8 +25,9 @@ import restroom.service.restaurantPrivate.FoodService;
 @RequestMapping("api/manage/food")
 public class FoodManagerController {
     
-    @Autowired
-    private FoodService foodService;
+    @Autowired private FoodService foodService;
+    
+    @Autowired private MenuService menuService;
     
     @GetMapping("/all")
     public List<Food> findAllFoods() {
@@ -39,6 +43,17 @@ public class FoodManagerController {
     public List<Food> findFoodByMenu(@PathVariable int id) {
         return foodService.findByMenu(id);
     }
+    
+    @GetMapping("/restaurant/{id}")
+    public List<Food> findFoodByRestaurant(@PathVariable int id) {
+        List<Food> restaurantFoods = new ArrayList<>();
+        List<Menu> restaurantMenus = menuService.findMenusByRestaurantId(id);
+        restaurantMenus.forEach(restaurantMenu -> {
+            restaurantFoods.addAll(restaurantMenu.getFoods());
+        });
+        return restaurantFoods;
+    }
+    
     
     @GetMapping("category/{id}")
     public List<Food> findFoodByCategory(@PathVariable int id) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import restroom.data.restaurantPrivate.Restaurant;
+import restroom.data.restaurantPrivate.RService;
 import restroom.service.restaurantPrivate.PublicService;
 
 /**
@@ -32,5 +33,10 @@ public class PublicController {
     @GetMapping("/restaurant/{id}")
     public Restaurant findRestaurantById(@PathVariable int id) {
         return publicService.findRestaurantById(id);
+    }
+    
+    @GetMapping("/service/all")
+    public List<RService> findAllServices() {
+        return publicService.findAllServices();
     }
 }

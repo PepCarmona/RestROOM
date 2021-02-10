@@ -2,7 +2,7 @@
   <div class="menu-categories scrollable-tabs row justify-content-center align-items-center">
     <ul>
       <li v-for="item in content" :key="item.id">
-        <label :id="item.id">
+        <label :id="item.id" :class="{ active: value.id == item.id}">
           <input
             :id="item.id"
             type="radio"

@@ -36,6 +36,10 @@ public class MenuController {
         return menuService.findActiveMenus();
     }
     
+    @GetMapping("/active/restaurant/{id}")
+    public List<Menu> findActiveMenusByRestaurant(@PathVariable int id) {
+        return menuService.findActiveMenusByRestaurantId(id);
+    }
     @GetMapping("/{id}")
     public Menu findMenuById(@PathVariable int id) {
         return menuService.findMenuById(id);

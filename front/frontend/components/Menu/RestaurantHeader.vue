@@ -87,7 +87,8 @@ export default {
     formattedWeb () {
       const http = 'http://www.'
       const https = 'https://www.'
-      const website = this.restaurant.website
+      // const website = this.restaurant.website
+      const website = 'http://www.example.com '
       let formatted
       if (website.includes(http)) {
         formatted = website.slice(http.length)

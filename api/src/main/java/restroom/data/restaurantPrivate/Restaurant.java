@@ -5,11 +5,14 @@
 package restroom.data.restaurantPrivate;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -51,6 +54,9 @@ public class Restaurant implements Serializable {
     private float rating;
     
     private String profile_photo_uri;
+    
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private Set<Menu> menus;
     
     public Restaurant() {
         
@@ -127,5 +133,9 @@ public class Restaurant implements Serializable {
 
     public String getProfile_photo_uri() {
         return profile_photo_uri;
+    }
+
+    public Set<Menu> getMenus() {
+        return menus;
     }
 }

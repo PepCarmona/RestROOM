@@ -1,12 +1,14 @@
 <template>
-  <section class="cart">
-    <button class="btn shopping-cart">
+  <section class="cart" :class="{ active: isVisible }">
+    <button class="btn shopping-cart" @click="toggleCart">
       <i class="fa fa-shopping-cart" />
-      <i class="fa fa-circle" />
+      <transition name="flashy">
+        <i v-if="!isEmpty" class="fa fa-circle" />
+      </transition>
       <i class="fas fa-chevron-right chevron-1" />
       <i class="fas fa-chevron-right chevron-2" />
     </button>
-    <div class="shopping-list">
+    <div class="shopping-list" :class="{ active: isVisible }">
       <div class="shopping-list-header">
         <p>Items</p> <p>Qty</p>
       </div>
@@ -37,6 +39,18 @@ export default {
       default () {
         return []
       }
+    },
+    isVisible: {
+      type: Boolean,
+      default () {
+        return false
+      }
+    },
+    isEmpty: {
+      type: Boolean,
+      default () {
+        return true
+      }
     }
   },
   computed: {
@@ -58,9 +72,18 @@ export default {
         cartFoods[cartFoods.indexOf(food)].quantity += 1
         this.$set(cartFoods, cartFoods.indexOf(food), food)
       }
+      this.isEmpty = false
     },
     cleanCart () {
       this.cartFoods.splice(0)
+      this.isEmpty = true
+    },
+    toggleCart () {
+      if (this.isVisible) {
+        this.isVisible = false
+      } else if (!this.isVisible) {
+        this.isVisible = true
+      }
     }
   }
 }
@@ -72,6 +95,10 @@ export default {
     right: -250px;
     height: auto;
     width: 300px;
+    transition: all .5s ease;
+}
+.cart.active {
+  right: 0px;
 }
 button.shopping-cart {
     background-color: var(--hard-orange);
@@ -108,15 +135,18 @@ button.shopping-cart {
     right: 30px;
 }
 .shopping-list {
-    display: none;
     position: relative;
-    left: 20px;
+    left: 60px;
     height: auto;
     width: 260px;
     padding: 10px;
     border-bottom-left-radius: 10px;
     background-color: rgba(201, 150, 55, 0.856);
     box-shadow: 0 0 5px black;
+    transition: all .5s ease;
+}
+.shopping-list.active {
+  left: 20px;
 }
 .shopping-list ul {
     list-style-type: none;
@@ -232,5 +262,23 @@ button.shopping-cart {
     border-bottom-right-radius: 30px !important;
     font-size: 15px;
     background-color: var(--light-orange);
+}
+.flashy-enter-active {
+  animation: flash-in .5s;
+}
+@keyframes flash-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.flashy-leave-active {
+  transform: scale(0);
+  transition: all .5s ease;
 }
 </style>

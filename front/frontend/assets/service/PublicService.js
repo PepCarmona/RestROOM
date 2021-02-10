@@ -1,4 +1,5 @@
 import Restaurant from '~/assets/data/public/Restaurant.class'
+import Service from '~/assets/data/public/Service.class'
 
 export default class PublicApi {
   constructor ($axios) {
@@ -24,6 +25,19 @@ export default class PublicApi {
       url: 'public/restaurant/' + id
     }).then((response) => {
       return response.data
+    })
+  }
+
+  findAllServices () {
+    return this.axios({
+      method: 'get',
+      url: 'public/service/all'
+    }).then((response) => {
+      const services = []
+      response.data.forEach((service) => {
+        services.push(new Service(service.service_ID, service.name))
+      })
+      return services
     })
   }
 }
