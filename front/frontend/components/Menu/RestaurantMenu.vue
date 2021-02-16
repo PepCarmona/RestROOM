@@ -4,15 +4,15 @@
       <div class="row">
         <div class="menu-tab col-10 container">
           <div class="menu-filters row justify-content-around align-items-center">
-            <menu-filter v-model="pickedMenu" :content="activeMenus" text="Menus" />
+            <menu-filter v-model="pickedMenu" :content="menus" text="Menus" />
             <menu-filter-multi v-model="pickedFoodType" :content="types" text="Food Types" @input="inputFoodTypes" />
             <menu-filter-multi v-model="pickedAllergen" :content="allergens" text="Allergens" @input="inputAllergens" />
             <menu-filter text="Order By" />
           </div>
-          <menu-categories v-model="pickedCategory" :content="categories" />
+          <menu-categories v-model="pickedCategory" />
         </div>
       </div>
-      <food-list :foods="filteredFoods" :picked-category="pickedCategory" @add-to-cart="addToCart" />
+      <food-list :foods="filteredFoods" @add-to-cart="addToCart" />
     </div>
   </section>
 </template>
@@ -28,40 +28,10 @@ export default {
     FoodList
   },
   props: {
-    foods: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
     menus: {
       type: Array,
       default () {
         return []
-      }
-    },
-    types: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    allergens: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    categories: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    pickedCategory: {
-      type: Object,
-      default () {
-        return {}
       }
     },
     pickedMenu: {
@@ -69,36 +39,34 @@ export default {
       default () {
         return {}
       }
-    },
-    pickedFoodTypes: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    pickedFoodType: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
-    pickedAllergens: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
-    pickedAllergen: {
-      type: Object,
-      default () {
-        return {}
+    }
+  },
+  async fetch () {
+    const selectedRestaurant = this.$store.state.selectedRestaurant
+    this.foods = await this.$services.food.findFoodByRestaurant(selectedRestaurant.id)
+    this.types = await this.$services.menu.findAllFoodTypes()
+    this.allergens = await this.$services.menu.findAllAllergens()
+    this.pickedCategory = await this.$services.menu.findCategoryById(5)
+  },
+  data () {
+    return {
+      foods: [],
+      types: [],
+      allergens: [],
+      pickedCategory: {
+        type: Object
+      },
+      pickedFoodTypes: [],
+      pickedFoodType: {
+        type: Object
+      },
+      pickedAllergens: [],
+      pickedAllergen: {
+        type: Object
       }
     }
   },
   computed: {
-    activeMenus () {
-      return this.menus.filter(menu => menu.available === true)
-    },
     filteredFoods () {
       let filteredFoods = this.foods
       const pickedMenu = this.pickedMenu

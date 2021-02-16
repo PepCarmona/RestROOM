@@ -4,9 +4,12 @@
  */
 package restroom.data.restaurantPrivate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +27,7 @@ import javax.persistence.OneToOne;
  * @author PepCarmona
  */
 @Entity
+@JsonIgnoreProperties({"menus", "recipe"})
 public class Food implements Serializable {
     
     
@@ -53,11 +57,7 @@ public class Food implements Serializable {
     @ManyToOne
     private FoodType foodType;
     
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "menu_item",
-            joinColumns = {@JoinColumn(name = "food_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "menu_ID")})
+    @ManyToMany(mappedBy = "foods", fetch = FetchType.EAGER)
     private Set<Menu> menus;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -68,17 +68,6 @@ public class Food implements Serializable {
     private Set<Allergen> allergens;
     
     public Food() {
-    }
-
-    public Food(String name, String description, Boolean available, float price, MenuCategory category, Recipe recipe, FoodType foodType, List<Integer> allergenIds) {
-        this.name = name;
-        this.description = description;
-        this.available = available;
-        this.price = price;
-        this.category = category;
-        this.recipe = recipe;
-        this.foodType = foodType;
-        //allergenIds.forEach(allergenId -> this.allergens.add(MenuService.findAllergenById(allergenId)));
     }
 
     public int getFood_ID() {
@@ -132,5 +121,37 @@ public class Food implements Serializable {
 
     public Set<Allergen> getAllergens() {
         return allergens;
+    }
+    
+//    public List<Integer> getAllergenIds() {
+//        if (this.allergens != null) {
+//            return this.allergens.stream().map(Allergen::getId).collect(Collectors.toList());
+//        }
+//        else return null;
+//    }
+
+    public void setCategory(MenuCategory category) {
+        this.category = category;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
+    }
+    
+    public void setAllergens(Set<Allergen> allergens) {
+        this.allergens = allergens;
+    }
+    
+    public void addToMenu(Menu menu) {
+        
+        this.menus.add(menu);
     }
 }

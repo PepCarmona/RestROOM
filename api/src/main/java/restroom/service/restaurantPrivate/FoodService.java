@@ -38,18 +38,6 @@ public class FoodService {
         return foodRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
     
-    public List<Food> findByCategory(int id) {
-        return (List<Food>) foodRepository.findByCategory_id(id);
-    }
-    
-    public List<Food> findByFoodType(int id) {
-        return (List<Food>) foodRepository.findByFoodType_id(id);
-    }
-    
-    public Food findByRecipe(int id) {
-        return foodRepository.findByRecipe_id(id);
-    }
-    
     public List<Food> findByMenu(int id) {
         return (List<Food>) foodRepository.findByMenus_id(id);
     }
@@ -58,19 +46,12 @@ public class FoodService {
         return (List<Food>) foodRepository.findByMenus_idAndCategory_id(menuId, categoryId);
     }
     
-    public List<Food> findByCategoryInMenuFilterByTypes(int menuId, int categoryId, List<Integer> typeId) {
-        return (List<Food>) foodRepository.findByMenus_idAndCategory_idAndFoodType_idIn(menuId, categoryId, typeId);
+    public Food save(Food food) {
+        return foodRepository.save(food);
     }
     
-    public List<Food> findByCategoryInMenuFilterByAllergens(int menuId, int categoryId, List<Integer> allergenId) {
-        return (List<Food>) foodRepository.findByMenus_idAndCategory_idAndAllergens_idIn(
-                menuId, categoryId, allergenId );
-    }
-    
-    public List<Food> findByCategoryInMenuFilterByTypesAndAllergens(
-            int menuId, int categoryId, List<Integer> typeId, List<Integer> allergenId ) {
-        return (List<Food>) foodRepository.findByMenus_idAndCategory_idAndFoodType_idInAndAllergens_idIn(
-                menuId, categoryId, typeId, allergenId );
+    public void deleteById(int id) {
+        foodRepository.deleteById(id);
     }
     
     /* ------------------- DISPLAYER ------------------ */

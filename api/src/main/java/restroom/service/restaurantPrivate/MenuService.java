@@ -33,6 +33,13 @@ public class MenuService {
     
     @Autowired private FoodTypeRepository typeRepository;
     
+    public Menu save(Menu food) {
+        return menuRepository.save(food);
+    }
+    
+    public void deleteById(int id) {
+        menuRepository.deleteById(id);
+    }
     public List<Menu> findAllMenus() {
         return (List<Menu>) menuRepository.findAll();
     }

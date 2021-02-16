@@ -4,15 +4,12 @@
  */
 package restroom.data.restaurantPrivate;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "food_type")
-@JsonIgnoreProperties({"foods"})
 public class FoodType implements Serializable {
     
     @Id
@@ -31,9 +27,6 @@ public class FoodType implements Serializable {
     
     private String name;
     
-    @OneToMany(mappedBy = "foodType")
-    private List<Food> foods;
-    
     public FoodType() {
     }
 
@@ -41,15 +34,11 @@ public class FoodType implements Serializable {
         this.name = name;
     }
 
-    public int getFood_type_ID() {
+    public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public List<Food> getFoods() {
-        return foods;
     }
 }

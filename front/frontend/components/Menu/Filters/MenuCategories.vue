@@ -1,17 +1,17 @@
 <template>
-  <div class="menu-categories scrollable-tabs row justify-content-center align-items-center">
+  <div class="menu-categories scrollable-tabs row justify-content-center align-categorys-center">
     <ul>
-      <li v-for="item in content" :key="item.id">
-        <label :id="item.id" :class="{ active: value.id == item.id}">
+      <li v-for="category in categories" :key="category.id">
+        <label :id="category.id" :class="{ active: value.id == category.id }">
           <input
-            :id="item.id"
+            :id="category.id"
             type="radio"
             name="category"
-            :value="item.name"
-            :checked="value.name == item.name"
-            @input="$emit('input', item)"
+            :value="category.name"
+            :checked="value.name == category.name"
+            @input="$emit('input', category)"
           >
-          {{ item.name }}
+          {{ category.name }}
         </label>
       </li>
     </ul>
@@ -20,12 +20,6 @@
 <script>
 export default {
   props: {
-    content: {
-      type: Array,
-      default () {
-        return []
-      }
-    },
     value: {
       type: Object,
       default () {
@@ -33,13 +27,21 @@ export default {
       }
     }
   },
+  async fetch () {
+    this.categories = await this.$services.menu.findAllCategories()
+  },
+  data () {
+    return {
+      categories: []
+    }
+  },
   computed: {
     capitalCategoryNames () {
-      return this.content.map(function (item) {
+      return this.categories.map(function (category) {
         return {
-          id: item.id,
-          name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
-          value: item.name.toLowerCase().replace(/\s/g, '-')
+          id: category.id,
+          name: category.name.charAt(0).toUpperCase() + category.name.slice(1),
+          value: category.name.toLowerCase().replace(/\s/g, '-')
         }
       })
     }

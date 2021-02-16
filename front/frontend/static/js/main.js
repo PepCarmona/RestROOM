@@ -109,6 +109,7 @@ $(window).on('click', function(e) {
     }
 });
 */
+/* filters dropdown 
 $('div.menus-dropdown').children().first().addClass('active')
 $('div.dropdown input').on('click', function() {
     if ($(this).attr('type') == 'radio') {
@@ -118,7 +119,7 @@ $('div.dropdown input').on('click', function() {
         $(this).parent().toggleClass('active')
     }
 });
-
+*/
 /* shopping cart 
 $(".shopping-cart").on('click', function() {
     if ($('.cart').css('right')=='0px'){

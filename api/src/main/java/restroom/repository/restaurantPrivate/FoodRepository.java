@@ -16,24 +16,10 @@ import restroom.data.restaurantPrivate.Food;
 public interface FoodRepository extends CrudRepository<Food, Integer>{
     
     /* -------------- MANAGER -------------- */
-    public List<Food> findByCategory_id(int id);
-    
-    public Food findByRecipe_id(int id);
-    
-    public List<Food> findByFoodType_id(int id);
     
     public List<Food> findByMenus_id(int id);
     
     public List<Food> findByMenus_idAndCategory_id(int menusId, int categoryId);
-    
-    public List<Food> findByMenus_idAndCategory_idAndFoodType_idIn(
-            int menusId, int categoryId, List<Integer> typeId);
-    
-    public List<Food> findByMenus_idAndCategory_idAndAllergens_idIn(
-            int menusId, int categoryId, List<Integer> allergenId);
-
-    public List<Food> findByMenus_idAndCategory_idAndFoodType_idInAndAllergens_idIn(
-            int menusId, int categoryId, List<Integer> typeId, List<Integer> allergenId);
 
     
     /* ---------------- DISPLAYER --------------- */

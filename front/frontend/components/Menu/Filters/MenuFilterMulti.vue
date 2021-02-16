@@ -1,6 +1,6 @@
 <template>
   <div class="col" :class="divClassName">
-    <button class="dropdown btn" :class="dropClassName">
+    <button class="dropdown btn" :class="dropClassName" @click="drop">
       {{ text }}
       <i class="fas fa-sort-down" />
     </button>
@@ -51,6 +51,11 @@ export default {
         return item.name.charAt(0).toUpperCase() + item.name.slice(1)
       })
     }
+  },
+  methods: {
+    drop (e) {
+      e.target.nextElementSibling.classList.toggle('active')
+    }
   }
 }
 </script>
@@ -79,10 +84,9 @@ i.fa-sort-up {
     margin-top: 3%;
 }
 div.dropdown {
-    display: none;
     position: absolute;
     width: 80%;
-    height: 30vh;
+    height: 0px;
     overflow: auto;
     z-index: 1;
     background-color: var(--lightest-orange);
@@ -90,6 +94,10 @@ div.dropdown {
     right: 12px;
     text-align: right;
     box-shadow: 0 0 2px 1px grey inset;
+    transition: all .5s ease;
+}
+div.dropdown.active {
+    height: 20vh;
 }
 div.dropdown > label {
     padding: 5px;
@@ -108,7 +116,6 @@ div.dropdown > label.active {
     border: 1px solid rgb(184, 152, 110);
 }
 div.dropdown input {
-    display: none;
 }
 ::-webkit-scrollbar {
     width: 5px;

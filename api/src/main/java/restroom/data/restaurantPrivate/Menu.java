@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -23,7 +24,7 @@ import javax.persistence.ManyToOne;
  * @author PepCarmona
  */
 @Entity
-@JsonIgnoreProperties({"foods", "restaurant"})
+@JsonIgnoreProperties({"restaurant", "foods"})
 public class Menu implements Serializable {
     
     @Id
@@ -44,7 +45,11 @@ public class Menu implements Serializable {
     
     private Boolean available;
     
-    @ManyToMany(mappedBy = "menus", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "menu_item",
+            joinColumns = {@JoinColumn(name = "menu_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "food_ID")})
     private Set<Food> foods;
     
     @JoinColumn(name = "restaurant_ID")
@@ -93,5 +98,17 @@ public class Menu implements Serializable {
 
     public Restaurant getRestaurant() {
         return restaurant;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+    
+    public void addFood(Food food) {
+        this.foods.add(food);
     }
 }

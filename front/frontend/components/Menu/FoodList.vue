@@ -20,12 +20,6 @@ export default {
       default () {
         return []
       }
-    },
-    pickedCategory: {
-      type: Object,
-      default () {
-        return {}
-      }
     }
   },
   methods: {

@@ -5,12 +5,20 @@
 package restroom.controller.restaurantPrivate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import restroom.data.restaurantPrivate.Allergen;
 import restroom.data.restaurantPrivate.Food;
 import restroom.data.restaurantPrivate.Menu;
 import restroom.service.restaurantPrivate.FoodService;
@@ -29,55 +37,77 @@ public class FoodManagerController {
     
     @Autowired private MenuService menuService;
     
-    @GetMapping("/all")
-    public List<Food> findAllFoods() {
-        return foodService.findAll();
+    // Get Food By Id
+    @GetMapping("/")
+    public Food findFoodById(@RequestParam int foodId) {
+        return foodService.findById(foodId);
     }
     
-    @GetMapping("/{id}")
-    public Food findFoodById(@PathVariable int id) {
-        return foodService.findById(id);
-    }
-    
-    @GetMapping("/menu/{id}")
-    public List<Food> findFoodByMenu(@PathVariable int id) {
-        return foodService.findByMenu(id);
-    }
-    
-    @GetMapping("/restaurant/{id}")
-    public List<Food> findFoodByRestaurant(@PathVariable int id) {
+    // Get Restaurant Foods
+    @GetMapping("/restaurant")
+    public List<Food> findFoodByRestaurant(@RequestParam int restaurantId) {
         List<Food> restaurantFoods = new ArrayList<>();
-        List<Menu> restaurantMenus = menuService.findMenusByRestaurantId(id);
+        List<Menu> restaurantMenus = menuService.findMenusByRestaurantId(restaurantId);
         restaurantMenus.forEach(restaurantMenu -> {
             restaurantFoods.addAll(restaurantMenu.getFoods());
         });
         return restaurantFoods;
     }
     
-    
-    @GetMapping("category/{id}")
-    public List<Food> findFoodByCategory(@PathVariable int id) {
-        return foodService.findByCategory(id);
+    // Get Foods By Menu & Category
+    @GetMapping("/menu")
+    public List<Food> findFoodByCategoryInMenu(@RequestParam int menuId, 
+                                               @RequestParam(value = "categoryId", required = false) Integer categoryId) {
+        if (categoryId == null) return foodService.findByMenu(menuId);
+        else return foodService.findByCategoryInMenu(menuId, categoryId);
     }
     
-    @GetMapping("/type/{id}")
-    public List<Food> findFoodByType(@PathVariable int id) {
-        return foodService.findByFoodType(id);
+    // Post New Food
+    @PostMapping("/new")
+    public Food create(@RequestBody Food food, @RequestParam(value = "allergenId", required = false) Set<Allergen> allergenIds,
+                                               @RequestParam int menuId, @RequestParam int categoryId, @RequestParam int foodTypeId) {
+        food.setCategory(menuService.findCategoryById(categoryId));
+        food.setFoodType(menuService.findTypeById(foodTypeId));
+        food.setMenus(new HashSet<>());
+        food.setAllergens(new HashSet<>());
+        Menu menu = menuService.findMenuById(menuId);
+        menu.addFood(food);
+        food.addToMenu(menu);
+        if (allergenIds != null) {
+            food.setAllergens(allergenIds);
+        }
+        return foodService.save(food);
     }
     
-    @GetMapping("/recipe/{id}")
-    public Food findFoodByRecipe(@PathVariable int id) {
-        return foodService.findByRecipe(id);
+    // Update existing Food
+    @PutMapping("/update")
+    public Food updateFood(@RequestBody Food food, @RequestParam int foodId) {
+        return foodService.save(food);
     }
     
-    @GetMapping("/{menuId}/{categoryId}")
-    public List<Food> findFoodByCategoryInMenu(@PathVariable int menuId, @PathVariable int categoryId) {
-        return foodService.findByCategoryInMenu(menuId, categoryId);
+    // Delete existing Food
+    @DeleteMapping("/delete")
+    public void deleteFood(@RequestParam int foodId) {
+        foodService.deleteById(foodId);
     }
     
-    @GetMapping("/{menuId}/{categoryId}/{typeId}")
-    public List<Food> findFoodByCategoryInMenuFilterByType(
-            @PathVariable int menuId, @PathVariable int categoryId, @PathVariable List<Integer> typeId) {
-        return foodService.findByCategoryInMenuFilterByTypes(menuId, categoryId, typeId);
+    // Filter Foods By Type & Allergens
+    @GetMapping("/filter")
+    public List<Food> getFilteredFoods (@RequestBody List<Food> foods, 
+                                        @RequestParam(value = "foodType", required = false) List<Integer> foodTypeIds,
+                                        @RequestParam(value = "allergen", required = false) List<Integer> allergenIds){
+        if (foodTypeIds != null) {
+            for (Integer id : foodTypeIds) {
+                foods = (List<Food>) foods.stream().filter(food -> food.getFoodType().getId() == id);
+            }
+        }
+        if (allergenIds != null) {
+            for (Integer id : allergenIds) {
+            foods = foods.stream().filter(food -> 
+                    !food.getAllergens().stream().map(Allergen::getId).collect(Collectors.toList())
+                            .contains(id)).collect(Collectors.toList());
+            }
+        }
+        return foods;
     }
 }

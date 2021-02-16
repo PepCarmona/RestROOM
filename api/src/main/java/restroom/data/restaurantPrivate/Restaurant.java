@@ -138,4 +138,12 @@ public class Restaurant implements Serializable {
     public Set<Menu> getMenus() {
         return menus;
     }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
+    }
+    
+    public void addMenu(Menu menu) {
+        this.menus.add(menu);
+    }
 }

@@ -75,11 +75,14 @@
 </template>
 <script>
 export default {
-  props: {
-    restaurant: {
-      type: Object,
-      default () {
-        return {}
+  fetch () {
+    const selectedRestaurant = this.$store.state.selectedRestaurant
+    this.restaurant = selectedRestaurant
+  },
+  data () {
+    return {
+      restaurant: {
+        type: Object
       }
     }
   },

@@ -5,8 +5,7 @@
       <i class="fas fa-sort-down" />
     </button>
     <div class="dropdown" :class="dropClassName">
-      <!--On click -> drop() -> check same class drop-->
-      <label v-for="item in content" :id="item.id" :key="item.id" :class="{ active: value.id == item.id}">
+      <label v-for="item in content" :id="item.id" :key="item.id" :class="{ active: value.id == item.id }">
         <input
           :id="item.id"
           type="radio"
@@ -63,9 +62,7 @@ export default {
   },
   methods: {
     drop (e) {
-      if (this.isDropped) {
-        this.isDropped = false
-      }
+      e.target.nextElementSibling.classList.toggle('active')
     }
   }
 }
@@ -95,10 +92,9 @@ i.fa-sort-up {
     margin-top: 3%;
 }
 div.dropdown {
-    display: none;
     position: absolute;
     width: 80%;
-    height: 30vh;
+    height: 0px;
     overflow: auto;
     z-index: 1;
     background-color: var(--lightest-orange);
@@ -106,6 +102,10 @@ div.dropdown {
     right: 12px;
     text-align: right;
     box-shadow: 0 0 2px 1px grey inset;
+    transition: all .5s ease;
+}
+div.dropdown.active {
+    height: 20vh;
 }
 div.dropdown > label {
     padding: 5px;
@@ -124,7 +124,6 @@ div.dropdown > label.active {
     border: 1px solid rgb(184, 152, 110);
 }
 div.dropdown input {
-  display: none;
 }
 ::-webkit-scrollbar {
     width: 3px;

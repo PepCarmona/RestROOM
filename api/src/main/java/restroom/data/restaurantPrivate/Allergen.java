@@ -46,7 +46,7 @@ public class Allergen implements Serializable {
         this.icon_uri = icon_uri;
     }
 
-    public int getAllergen_ID() {
+    public int getId() {
         return id;
     }
 
