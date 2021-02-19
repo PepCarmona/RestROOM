@@ -144,4 +144,11 @@ public class Customer implements Serializable {
         return country;
     }
 
+    public void setRegister_date(Timestamp register_date) {
+        this.register_date = register_date;
+    }
+
+    public void setLast_login(Timestamp last_login) {
+        this.last_login = last_login;
+    }
 }

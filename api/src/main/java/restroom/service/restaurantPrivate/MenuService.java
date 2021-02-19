@@ -33,31 +33,24 @@ public class MenuService {
     
     @Autowired private FoodTypeRepository typeRepository;
     
-    public Menu save(Menu food) {
-        return menuRepository.save(food);
-    }
-    
-    public void deleteById(int id) {
-        menuRepository.deleteById(id);
-    }
-    public List<Menu> findAllMenus() {
-        return (List<Menu>) menuRepository.findAll();
-    }
-    
-    public List<Menu> findActiveMenus() {
-        return menuRepository.findByAvailableIsTrue();
-    }
-    
-    public List<Menu> findActiveMenusByRestaurantId(int id) {
-        return menuRepository.findByRestaurant_idAndAvailableIsTrue(id);
-    }
-    
     public Menu findMenuById(int id) {
         return menuRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
     
     public List<Menu> findMenusByRestaurantId(int id) {
         return menuRepository.findByRestaurant_id(id);
+    }
+    
+    public List<Menu> findActiveMenusByRestaurantId(int id) {
+        return menuRepository.findByRestaurant_idAndAvailableIsTrue(id);
+    }
+    
+    public Menu save(Menu food) {
+        return menuRepository.save(food);
+    }
+    
+    public void deleteById(int id) {
+        menuRepository.deleteById(id);
     }
     
     public List<Allergen> findAllAllergens() {
@@ -80,6 +73,7 @@ public class MenuService {
     public List<FoodType> findAllTypes() {
         return (List<FoodType>) typeRepository.findAll();
     }
+    
     public FoodType findTypeById(int id) {
         return typeRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }

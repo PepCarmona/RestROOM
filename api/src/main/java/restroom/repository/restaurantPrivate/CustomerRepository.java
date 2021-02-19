@@ -5,14 +5,13 @@
 package restroom.repository.restaurantPrivate;
 
 import org.springframework.data.repository.CrudRepository;
-import restroom.data.restaurantPrivate.Restaurant;
+import restroom.data.restaurantPrivate.Customer;
 
 /**
  *
  * @author PepCarmona
  */
-public interface RestaurantRepository extends CrudRepository<Restaurant, Integer>{
+public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     
-    public Restaurant findByUsername(String username);
-    
+    public Customer findByUsername(String username);
 }

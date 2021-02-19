@@ -5,6 +5,8 @@
 package restroom.controller.restaurantPrivate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -85,6 +87,14 @@ public class FoodManagerController {
         return foodService.save(food);
     }
     
+    // Update Food (Available/Unavailable)
+    @PutMapping("/uptade")
+    public Food activateFood(@RequestParam int foodId, @RequestParam boolean available) {
+        Food food = foodService.findById(foodId);
+        food.setAvailable(available);
+        return foodService.save(food);
+    }
+    
     // Delete existing Food
     @DeleteMapping("/delete")
     public void deleteFood(@RequestParam int foodId) {
@@ -107,6 +117,30 @@ public class FoodManagerController {
                     !food.getAllergens().stream().map(Allergen::getId).collect(Collectors.toList())
                             .contains(id)).collect(Collectors.toList());
             }
+        }
+        return foods;
+    }
+    
+    @GetMapping("/sortByPrice")
+    public List<Food> sortByPrice  (@RequestBody List<Food> foods, @RequestParam(value = "desc", required = false) boolean desc) {
+        Comparator<Food> compareByPrice = (Food f1, Food f2) -> Float.compare(f1.getPrice(), f2.getPrice());
+        if (desc) {
+            Collections.sort(foods, compareByPrice.reversed());
+        }
+        else if (desc) {
+            Collections.sort(foods, compareByPrice);
+        }
+        return foods;
+    }
+    
+    @GetMapping("/sortByName")
+    public List<Food> sortByName  (@RequestBody List<Food> foods, @RequestParam(value = "desc", required = false) boolean desc) {
+        Comparator<Food> compareByName = (Food f1, Food f2) -> f1.getName().compareTo(f2.getName());
+        if (desc) {
+            Collections.sort(foods, compareByName.reversed());
+        }
+        else if (desc) {
+            Collections.sort(foods, compareByName);
         }
         return foods;
     }

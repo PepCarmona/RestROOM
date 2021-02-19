@@ -43,7 +43,7 @@ public class MenuController {
     
     // Get Menus By Restaurant
     @GetMapping("/restaurant")
-    public List<Menu> findMenuByRestaurant(@RequestParam int id) {
+    public List<Menu> findMenusByRestaurant(@RequestParam int id) {
         return menuService.findMenusByRestaurantId(id);
     }
     
@@ -63,11 +63,21 @@ public class MenuController {
         return menuService.save(menu);
     }
     
+    // Update existing Menu
     @PutMapping("/update")
     public Menu updateMenu(@RequestBody Menu menu, @RequestParam int menuId) {
         return menuService.save(menu);
     }
     
+    // Update Menu (Available/Unavailable)
+    @PutMapping("/uptade")
+    public Menu activateMenu(@RequestParam int menuId, @RequestParam boolean available) {
+        Menu menu = menuService.findMenuById(menuId);
+        menu.setAvailable(available);
+        return menuService.save(menu);
+    }
+    
+    // Delete existing Menu
     @DeleteMapping("/delete")
     public void deleteMenu(@RequestParam int menuId) {
         menuService.deleteById(menuId);

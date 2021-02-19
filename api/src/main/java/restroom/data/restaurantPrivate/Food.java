@@ -134,10 +134,6 @@ public class Food implements Serializable {
         this.category = category;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
     }
@@ -146,12 +142,16 @@ public class Food implements Serializable {
         this.menus = menus;
     }
     
-    public void setAllergens(Set<Allergen> allergens) {
-        this.allergens = allergens;
-    }
-    
     public void addToMenu(Menu menu) {
         
         this.menus.add(menu);
+    }
+    
+    public void setAllergens(Set<Allergen> allergens) {
+        this.allergens = allergens;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

@@ -103,12 +103,16 @@ public class Menu implements Serializable {
     public void setFoods(Set<Food> foods) {
         this.foods = foods;
     }
+    
+    public void addFood(Food food) {
+        this.foods.add(food);
+    }
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
     
-    public void addFood(Food food) {
-        this.foods.add(food);
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
