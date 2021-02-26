@@ -5,11 +5,14 @@
 package restroom.controller.restaurantPrivate;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,9 +38,21 @@ public class PublicController {
         return publicService.findAllRestaurants();
     }
     
-    @GetMapping("/restaurant/{id}")
-    public Restaurant findRestaurantById(@PathVariable int id) {
+    @GetMapping("/restaurant")
+    public Restaurant findRestaurantById(@RequestParam int id) {
         return publicService.findRestaurantById(id);
+    }
+    
+    @PutMapping("/restaurant")
+    public List<Restaurant> filterByService(@RequestBody List<Restaurant> restaurants, @RequestParam List<Integer> serviceIds) {
+        List<Restaurant> filtered = new ArrayList<>();
+        serviceIds.forEach(id -> {
+            filtered.addAll(restaurants.stream().filter(restaurant ->
+                    restaurant.getServices().stream().map(RService::getId).collect(Collectors.toList())
+                            .contains(id)).collect(Collectors.toList())
+                    .stream().filter(restaurant -> !filtered.contains(restaurant)).collect(Collectors.toList()));
+        });
+        return filtered;
     }
     
     @GetMapping("/service/all")

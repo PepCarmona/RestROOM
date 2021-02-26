@@ -88,10 +88,10 @@ public class FoodManagerController {
     }
     
     // Update Food (Available/Unavailable)
-    @PutMapping("/uptade")
-    public Food activateFood(@RequestParam int foodId, @RequestParam boolean available) {
+    @PutMapping("/toggle")
+    public Food activateFood(@RequestParam int foodId) {
         Food food = foodService.findById(foodId);
-        food.setAvailable(available);
+        food.setAvailable(!food.getAvailable());
         return foodService.save(food);
     }
     
@@ -102,14 +102,12 @@ public class FoodManagerController {
     }
     
     // Filter Foods By Type & Allergens
-    @GetMapping("/filter")
+    @PutMapping("/filter")
     public List<Food> getFilteredFoods (@RequestBody List<Food> foods, 
                                         @RequestParam(value = "foodType", required = false) List<Integer> foodTypeIds,
                                         @RequestParam(value = "allergen", required = false) List<Integer> allergenIds){
         if (foodTypeIds != null) {
-            for (Integer id : foodTypeIds) {
-                foods = (List<Food>) foods.stream().filter(food -> food.getFoodType().getId() == id);
-            }
+            foods = foods.stream().filter(food -> foodTypeIds.contains(food.getFoodType().getId())).collect(Collectors.toList());
         }
         if (allergenIds != null) {
             for (Integer id : allergenIds) {
@@ -121,26 +119,25 @@ public class FoodManagerController {
         return foods;
     }
     
-    @GetMapping("/sortByPrice")
-    public List<Food> sortByPrice  (@RequestBody List<Food> foods, @RequestParam(value = "desc", required = false) boolean desc) {
-        Comparator<Food> compareByPrice = (Food f1, Food f2) -> Float.compare(f1.getPrice(), f2.getPrice());
-        if (desc) {
-            Collections.sort(foods, compareByPrice.reversed());
-        }
-        else if (desc) {
-            Collections.sort(foods, compareByPrice);
-        }
-        return foods;
-    }
     
-    @GetMapping("/sortByName")
-    public List<Food> sortByName  (@RequestBody List<Food> foods, @RequestParam(value = "desc", required = false) boolean desc) {
-        Comparator<Food> compareByName = (Food f1, Food f2) -> f1.getName().compareTo(f2.getName());
-        if (desc) {
-            Collections.sort(foods, compareByName.reversed());
-        }
-        else if (desc) {
-            Collections.sort(foods, compareByName);
+    @PutMapping("/sort")
+    public List<Food> sort  (@RequestBody List<Food> foods, @RequestParam(value = "desc", required = false) boolean desc, @RequestParam String by) {
+        if (by.equalsIgnoreCase("price")) {
+            Comparator<Food> compareByPrice = (Food f1, Food f2) -> Float.compare(f1.getPrice(), f2.getPrice());
+            if (desc) {
+                Collections.sort(foods, compareByPrice.reversed());
+            }
+            else if (!desc) {
+                Collections.sort(foods, compareByPrice);
+            }
+        } else if (by.equalsIgnoreCase("name")) {
+            Comparator<Food> compareByName = (Food f1, Food f2) -> f1.getName().compareToIgnoreCase(f2.getName());
+            if (desc) {
+                Collections.sort(foods, compareByName.reversed());
+            }
+            else if (!desc) {
+                Collections.sort(foods, compareByName);
+            }
         }
         return foods;
     }

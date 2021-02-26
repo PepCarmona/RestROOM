@@ -1,5 +1,5 @@
 export default class Restaurant {
-  constructor (id, name, description, address, city, country, zipCode, username, password, website, phone, email) {
+  constructor (id, name, description, address, city, country, zipCode, username, password, website, phone, email, services) {
     this.id = id
     this.name = name
     this.description = description
@@ -12,5 +12,6 @@ export default class Restaurant {
     this.website = website
     this.phone = phone
     this.email = email
+    this.services = services
   }
 }

@@ -48,9 +48,9 @@ public class MenuController {
     }
     
     // Get Active Menus By Restaurant
-    @GetMapping("/restaurant/active")
-    public List<Menu> findActiveMenusByRestaurant(@RequestParam int id) {
-        return menuService.findActiveMenusByRestaurantId(id);
+    @GetMapping("/active")
+    public List<Menu> findActiveMenusByRestaurant(@RequestParam int restaurantId) {
+        return menuService.findActiveMenusByRestaurantId(restaurantId);
     }
     
     // Post New Menu

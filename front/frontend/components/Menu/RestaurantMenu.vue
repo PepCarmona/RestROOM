@@ -5,12 +5,15 @@
         <div class="menu-tab col-10 container">
           <div class="menu-filters row justify-content-around align-items-center">
             <menu-filter v-model="pickedMenu" :content="menus" text="Menus" />
-            <menu-filter-multi v-model="pickedFoodType" :content="types" text="Food Types" @input="inputFoodTypes" />
-            <menu-filter-multi v-model="pickedAllergen" :content="allergens" text="Allergens" @input="inputAllergens" />
+            <menu-filter-multi v-model="pickedFoodType" :content="types" :picked-list="pickedFoodTypes" text="Food Types" @input="inputFoodTypes" />
+            <menu-filter-multi v-model="pickedAllergen" :content="allergens" :picked-list="pickedAllergens" text="Allergens" @input="inputAllergens" />
             <menu-filter text="Order By" />
           </div>
           <menu-categories v-model="pickedCategory" />
         </div>
+      </div>
+      <div v-if="$fetchState.pending" class="loading col-10">
+        Loading
       </div>
       <food-list :foods="filteredFoods" @add-to-cart="addToCart" />
     </div>
@@ -76,9 +79,9 @@ export default {
       filteredFoods = filteredFoods.filter(food => food.menus.some(menu => menu.menu_ID === pickedMenu.id))
       filteredFoods = filteredFoods.filter(food => food.category.id === pickedCategory.id)
       if (pickedFoodTypes.length > 0) {
-        filteredFoods = filteredFoods.filter(food => pickedFoodTypes.some(foodType => foodType.id === food.type.food_type_ID))
+        filteredFoods = filteredFoods.filter(food => pickedFoodTypes.some(foodType => foodType.id === food.type.id))
       }
-      filteredFoods = filteredFoods.filter(food => !food.allergens.some(foodAllergen => pickedAllergens.some(allergen => allergen.id === foodAllergen.allergen_ID)))
+      filteredFoods = filteredFoods.filter(food => !food.allergens.some(foodAllergen => pickedAllergens.some(allergen => allergen.id === foodAllergen.id)))
       return filteredFoods
     }
 
@@ -127,6 +130,46 @@ export default {
     padding-top: 5px;
     position: relative;
     display: inline-block;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.loading {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  line-height: 200px;
+  font-size: 30px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+}
+.loading::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: var(--hard-orange);
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  animation: rotate 4s linear infinite;
+}
+.loading::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background: white;
+  border-radius: 5px;
 }
 @media only screen and (max-width: 1000px){
     .restaurant-menu .container, .restaurant-menu .col-10{

@@ -36,19 +36,19 @@
             <div class="header-contact col-auto">
               <p>
                 <i class="fas fa-laptop" />
-                <a :href="restaurant.website" target="_blank" rel="noopener noreferrer">
+                <a href="" target="_blank" rel="noopener noreferrer">
                   {{ formattedWeb }}
                 </a>
               </p>
               <p>
                 <i class="fas fa-phone-alt" />
-                <a :href="restaurant.phone">
+                <a href="">
                   {{ restaurant.phone }}
                 </a>
               </p>
               <p>
                 <i class="far fa-envelope" />
-                <a href="mailto:">
+                <a href="">
                   {{ restaurant.email }}
                 </a>
               </p>

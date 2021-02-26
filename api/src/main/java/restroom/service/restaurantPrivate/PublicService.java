@@ -14,7 +14,7 @@ import restroom.data.restaurantPrivate.Restaurant;
 import restroom.data.restaurantPrivate.RService;
 import restroom.repository.restaurantPrivate.CustomerRepository;
 import restroom.repository.restaurantPrivate.RestaurantRepository;
-import restroom.repository.restaurantPrivate.ServiceRepository;
+import restroom.repository.restaurantPrivate.RServiceRepository;
 
 /**
  *
@@ -27,7 +27,7 @@ public class PublicService {
     
     @Autowired private CustomerRepository customerRepository;
     
-    @Autowired private ServiceRepository serviceRepository;
+    @Autowired private RServiceRepository serviceRepository;
     
     public List<Restaurant> findAllRestaurants() {
         return (List<Restaurant>) restaurantRepository.findAll();
@@ -41,7 +41,7 @@ public class PublicService {
         if (restaurantRepository.findByUsername(username) == null) {
             return -1;
         } else {
-            return restaurantRepository.findByUsername(username).getRestaurant_ID();
+            return restaurantRepository.findByUsername(username).getId();
         }
     }
     

@@ -124,6 +124,7 @@ div.dropdown > label.active {
     border: 1px solid rgb(184, 152, 110);
 }
 div.dropdown input {
+  display: none;
 }
 ::-webkit-scrollbar {
     width: 3px;

@@ -39,18 +39,12 @@ export default {
       default () {
         return []
       }
-    },
-    isVisible: {
-      type: Boolean,
-      default () {
-        return false
-      }
-    },
-    isEmpty: {
-      type: Boolean,
-      default () {
-        return true
-      }
+    }
+  },
+  data () {
+    return {
+      isVisible: false,
+      isEmpty: true
     }
   },
   computed: {

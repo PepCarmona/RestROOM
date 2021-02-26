@@ -5,10 +5,14 @@
 package restroom.data.restaurantPrivate;
 
 import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,20 +25,24 @@ public class RService implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int service_ID;
+    @Column(name = "service_ID")
+    private int id;
     
     private String name;
+    
+    @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER)
+    private Set<Restaurant> restaurants;
 
     public RService() {
     }
 
     public RService(int service_ID, String name) {
-        this.service_ID = service_ID;
+        this.id = service_ID;
         this.name = name;
     }
 
-    public int getService_ID() {
-        return service_ID;
+    public int getId() {
+        return id;
     }
 
     public String getName() {

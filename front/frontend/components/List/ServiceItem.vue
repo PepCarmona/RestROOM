@@ -1,8 +1,9 @@
 <template>
-  <div class="ccard">
-    <p>{{ service.name }}</p>
-    <input :id="'service-'+service.id" type="checkbox" class="hidden">
-    <i class="fa fa-check unchecked" />
+  <div class="ccard" :class="{ active: isSelected(service.id) }">
+    <label> {{ service.name }}
+      <input :id="service.id" type="checkbox" :value="service.name" @input="$emit('input', service)">
+    </label>
+    <i class="fa fa-check" :class="isSelected(service.id) ? 'checked' : 'unchecked'" />
   </div>
 </template>
 <script>
@@ -13,6 +14,23 @@ export default {
       default () {
         return {}
       }
+    },
+    pickedServices: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
+  methods: {
+    isSelected (id) {
+      let found = false
+      this.$props.pickedServices.forEach((element) => {
+        if (element.id === id) {
+          found = true
+        }
+      })
+      return found
     }
   }
 }
@@ -30,6 +48,9 @@ export default {
 }
 .check-services div:hover {
     color: black;
+}
+.check-services div.active {
+  background-color: rgb(194, 194, 194);
 }
 .check-services div p {
     margin-bottom: 0;
@@ -49,7 +70,12 @@ export default {
 .check-services div:hover i.checked {
     color: rgb(113, 179, 15)
 }
+.check-services div label {
+  height: 100%;
+  line-height: 34px;
+  width: 100%;
+}
 .check-services div input {
-    display: none;
+  display: none;
 }
 </style>

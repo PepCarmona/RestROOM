@@ -1,7 +1,6 @@
 <template>
   <div>
     <restaurant-header />
-    <restaurant-tab />
     <restaurant-menu
       :menus="activeMenus"
       :picked-menu="pickedMenu"
@@ -15,14 +14,12 @@
 
 import RestaurantHeader from '~/components/Menu/RestaurantHeader.vue'
 import RestaurantMenu from '~/components/Menu/RestaurantMenu.vue'
-import RestaurantTab from '~/components/Menu/RestaurantTab.vue'
 import ShoppingCart from '~/components/Menu/ShopingCart.vue'
 
 export default {
   components: {
     RestaurantHeader,
     RestaurantMenu,
-    RestaurantTab,
     ShoppingCart
   },
   async fetch () {

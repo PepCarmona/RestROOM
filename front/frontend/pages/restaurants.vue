@@ -5,13 +5,13 @@
         <div class="list-services-area col-3">
           <h5>SERVICES</h5>
           <form class="check-services hidden-checkbox">
-            <service-item v-for="service in services" :key="service.id" :service="service" />
+            <service-item v-for="service in services" :key="service.id" :service="service" :picked-services="pickedServices" @input="inputService" />
           </form>
         </div>
         <div class="col-8">
           <section class="list-restaurant">
             <h5>RESTAURANTS</h5>
-            <restaurant-item v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant" />
+            <restaurant-item v-for="restaurant in filteredRestaurants" :key="restaurant.id" :restaurant="restaurant" />
           </section>
         </div>
       </div>
@@ -40,6 +40,32 @@ export default {
       },
       services: {
         type: Array
+      },
+      pickedServices: []
+    }
+  },
+  computed: {
+    filteredRestaurants () {
+      let filteredRestaurants = this.restaurants
+      if (this.pickedServices.length > 0) {
+        filteredRestaurants = filteredRestaurants.filter(restaurant => restaurant.services.some(restaurantService => this.pickedServices.some(service => service.id === restaurantService.id)))
+      }
+      return filteredRestaurants
+    }
+  },
+  methods: {
+    inputService (service) {
+      let found = false
+      const list = this.pickedServices
+      list.forEach(function (element, index) {
+        if (element.id === service.id) {
+          found = true
+          list.splice(index, 1)
+          return false
+        }
+      })
+      if (!found) {
+        list.push(service)
       }
     }
   }

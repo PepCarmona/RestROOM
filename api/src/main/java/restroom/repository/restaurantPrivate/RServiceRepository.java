@@ -11,6 +11,6 @@ import restroom.data.restaurantPrivate.RService;
  *
  * @author PepCarmona
  */
-public interface ServiceRepository extends CrudRepository<RService, Integer>{
+public interface RServiceRepository extends CrudRepository<RService, Integer>{
     
 }

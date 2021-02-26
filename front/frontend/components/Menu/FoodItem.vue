@@ -14,7 +14,7 @@
         {{ capitalFoodType }}
       </div>
       <div class="food-allergens">
-        <div v-for="allergen in food.allergens" :key="allergen.id" :style="{ backgroundImage: `url('/img/allergens/`+allergen.allergen_ID+`.png')`}">
+        <div v-for="allergen in food.allergens" :key="allergen.id" :style="{ backgroundImage: `url('/img/allergens/`+allergen.id+`.png')`}">
           <span class="tooltip">{{ allergen.name }}</span>
         </div>
       </div>

@@ -12,6 +12,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -58,6 +61,13 @@ public class Restaurant implements Serializable {
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Menu> menus;
     
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "restaurant_services",
+            joinColumns = {@JoinColumn(name = "restaurant_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "service_ID")})
+    private Set<RService> services;
+    
     public Restaurant() {
         
     }
@@ -79,7 +89,7 @@ public class Restaurant implements Serializable {
         this.profile_photo_uri = profile_photo_uri;
     }
 
-    public int getRestaurant_ID() {
+    public int getId() {
         return id;
     }
 
@@ -137,6 +147,10 @@ public class Restaurant implements Serializable {
 
     public Set<Menu> getMenus() {
         return menus;
+    }
+
+    public Set<RService> getServices() {
+        return services;
     }
 
     public void setMenus(Set<Menu> menus) {

@@ -5,7 +5,7 @@
       <i class="fas fa-sort-down" />
     </button>
     <div class="dropdown" :class="dropClassName">
-      <label v-for="item in content" :id="item.id" :key="item.id">
+      <label v-for="item in content" :id="item.id" :key="item.id" :class="{ active: isSelected(item.id) }">
         <input
           :id="item.id"
           type="checkbox"
@@ -37,6 +37,12 @@ export default {
       default () {
         return {}
       }
+    },
+    pickedList: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   computed: {
@@ -55,6 +61,15 @@ export default {
   methods: {
     drop (e) {
       e.target.nextElementSibling.classList.toggle('active')
+    },
+    isSelected (id) {
+      let found = false
+      this.$props.pickedList.forEach((element) => {
+        if (element.id === id) {
+          found = true
+        }
+      })
+      return found
     }
   }
 }
@@ -116,6 +131,7 @@ div.dropdown > label.active {
     border: 1px solid rgb(184, 152, 110);
 }
 div.dropdown input {
+  display: none;
 }
 ::-webkit-scrollbar {
     width: 5px;

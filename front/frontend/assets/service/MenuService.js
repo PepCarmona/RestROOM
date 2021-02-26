@@ -8,36 +8,11 @@ export default class MenuApi {
     this.axios = $axios
   }
 
-  findAllMenus () {
-    return this.axios({
-      menthod: 'get',
-      url: 'menu/all'
-    }).then((response) => {
-      const menus = []
-      response.data.forEach((menu) => {
-        menus.push(new Menu(menu.menu_ID, menu.name, menu.description, menu.date_start, menu.date_finish, menu.available))
-      })
-      return menus
-    })
-  }
-
-  findActiveMenus () {
-    return this.axios({
-      menthod: 'get',
-      url: 'menu/active'
-    }).then((response) => {
-      const menus = []
-      response.data.forEach((menu) => {
-        menus.push(new Menu(menu.menu_ID, menu.name, menu.description, menu.date_start, menu.date_finish, menu.available))
-      })
-      return menus
-    })
-  }
-
   findActiveMenusByRestaurant (id) {
     return this.axios({
       menthod: 'get',
-      url: 'menu/active/restaurant/' + id
+      url: 'menu/active',
+      params: { restaurantId: id }
     }).then((response) => {
       const menus = []
       response.data.forEach((menu) => {
@@ -63,7 +38,8 @@ export default class MenuApi {
   findCategoryById (id) {
     return this.axios({
       menthod: 'get',
-      url: 'menu/category/' + id
+      url: 'menu/category',
+      params: { id }
     }).then((response) => {
       return response.data
     })
@@ -76,7 +52,7 @@ export default class MenuApi {
     }).then((response) => {
       const allergens = []
       response.data.forEach((allergen) => {
-        allergens.push(new Allergen(allergen.allergen_ID, allergen.name))
+        allergens.push(new Allergen(allergen.id, allergen.name))
       })
       return allergens
     })
@@ -89,7 +65,7 @@ export default class MenuApi {
     }).then((response) => {
       const types = []
       response.data.forEach((type) => {
-        types.push(new FoodType(type.food_type_ID, type.name))
+        types.push(new FoodType(type.id, type.name))
       })
       return types
     })
